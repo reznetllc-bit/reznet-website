@@ -2,47 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>RezNet LLC – Davie County Wi-Fi & Networking Experts</title>
+  <title>RezNet LLC – Davie County Wi-Fi &amp; Networking Experts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="RezNet LLC optimizes existing Wi-Fi, installs UniFi networks, and deploys private local camera systems for homes in Davie County and the NC Triad.">
   <link rel="icon" type="image/png" href="assets/img/header-logo.png">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="page-home">
   <div class="page-bg"></div>
 
   <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand-block">
-        <img src="assets/img/header-logo.png" alt="RezNet LLC" class="logo">
+        <a href="index.html" class="brand-link">
+          <img src="assets/img/header-logo.png" alt="RezNet LLC" class="logo">
+        </a>
       </div>
       <nav class="nav">
-        <a href="#services">Services</a>
-        <a href="#process">How It Works</a>
-        <a href="#why-reznet">Why RezNet</a>
-        <a href="#areas">Service Area</a>
-        <a href="#contact" class="nav-cta">Book a Wi-Fi Evaluation</a>
+        <a href="wifi.html">Wi-Fi Optimization</a>
+        <a href="unifi.html">UniFi Wi-Fi</a>
+        <a href="cameras.html">Cameras</a>
+        <a href="why.html">Why RezNet</a>
+        <a href="contact.html" class="nav-cta">Book a Wi-Fi Evaluation</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- HERO (short + clear) -->
+  <section class="hero hero-condensed">
     <div class="container hero-inner">
       <div class="hero-left">
         <p class="hero-kicker">RezNet LLC • Davie County, NC</p>
-        <h1>Davie County’s Trusted Home Wi-Fi &amp; Networking Experts</h1>
+        <h1>Wi-Fi That Actually Works At Home.</h1>
         <p class="hero-body">
-          We optimize the Wi-Fi you already own, install wired UniFi networks, and deploy private, local-only camera systems.
-          No guesswork. No cloud lock-in. No confusing tech talk.
+          We fix bad Wi-Fi, install wired UniFi networks, and deploy private, local-only
+          camera systems for homes across Davie County and the Triad.
         </p>
         <div class="hero-actions">
-          <a href="#contact" class="btn primary">Fix My Wi-Fi</a>
-          <a href="#services" class="btn secondary">See What We Do</a>
+          <a href="wifi.html" class="btn primary">Fix My Wi-Fi</a>
+          <a href="#services" class="btn secondary">See All Services</a>
         </div>
         <p class="hero-subtext">
-          Proudly serving <strong>Mocksville, Advance, Bermuda Run / Kinderton, Cooleemee, Farmington</strong> and nearby Triad communities.
+          Proudly serving Mocksville, Advance, Bermuda Run / Kinderton, Cooleemee, Farmington, and nearby Triad communities.
         </p>
       </div>
       <div class="hero-right">
@@ -57,190 +59,92 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- SERVICES SUMMARY (router to subpages) -->
   <section id="services" class="section section-tight">
     <div class="container">
-      <div class="section-header">
-        <h2>What We Do</h2>
+      <div class="section-header center">
+        <h2>How RezNet Can Help</h2>
         <p>
-          We don’t just drop in hardware. We design and tune the digital backbone of your home using
-          predictive planning, live measurements, and an honest conversation about how you live.
+          Three simple ways to work with us. Pick what sounds most like your situation,
+          or call and we’ll talk it through.
         </p>
       </div>
 
-      <div class="service-panel-grid">
-        <article class="service-panel">
-          <div class="panel-image-wrap">
-            <img src="assets/img/panel-wifi.png" alt="Wi-Fi Optimization" class="panel-image">
-          </div>
-          <div class="panel-body">
-            <h3>Wi-Fi Optimization</h3>
-            <p>
-              Slow speeds, dead zones, “good enough” mesh? We start with what you already have and
-              use professional tools to tune placement, channels, and power.
-            </p>
-            <ul>
-              <li>Mesh &amp; router placement that actually makes sense</li>
-              <li>Channel, power, and band-steering tuning</li>
-              <li>Before/after heatmaps of your coverage</li>
-            </ul>
-          </div>
+      <div class="service-summary-grid">
+        <article class="summary-card">
+          <img src="assets/img/panel-wifi.png" alt="Wi-Fi Optimization" class="summary-img">
+          <h3>Wi-Fi Optimization</h3>
+          <p>
+            Keep your existing equipment and let us tune placement, channels, and settings
+            using heatmaps and live measurements.
+          </p>
+          <a href="wifi.html" class="summary-link">Learn more about Wi-Fi Optimization →</a>
         </article>
 
-        <article class="service-panel">
-          <div class="panel-image-wrap">
-            <img src="assets/img/panel-unifi.png" alt="UniFi Installations" class="panel-image">
-          </div>
-          <div class="panel-body">
-            <h3>UniFi Wi-Fi Installations</h3>
-            <p>
-              When it’s time to upgrade, we install UniFi like a business would – wired access points,
-              clean cable runs, and a network you can grow with.
-            </p>
-            <ul>
-              <li>Ceiling-mount UniFi APs with wired backhaul</li>
-              <li>Guest, work-from-home, and family networks</li>
-              <li>Planning for future devices, not just today</li>
-            </ul>
-          </div>
+        <article class="summary-card">
+          <img src="assets/img/panel-unifi.png" alt="UniFi Wi-Fi Installations" class="summary-img">
+          <h3>UniFi Wi-Fi Installations</h3>
+          <p>
+            Ready to upgrade? We design and install wired UniFi access points so your whole
+            home feels like it’s right next to the router.
+          </p>
+          <a href="unifi.html" class="summary-link">Learn more about UniFi installs →</a>
         </article>
 
-        <article class="service-panel">
-          <div class="panel-image-wrap">
-            <img src="assets/img/panel-cameras.png" alt="Local Camera Systems" class="panel-image">
-          </div>
-          <div class="panel-body">
-            <h3>Local UniFi Camera Systems</h3>
-            <p>
-              Private, on-site video security with no monthly cloud fees. Your footage lives in your home,
-              under your control – not on someone else’s servers.
-            </p>
-            <ul>
-              <li>UniFi Protect cameras &amp; doorbells</li>
-              <li>Local storage – no forced subscriptions</li>
-              <li>Secure remote access without selling your data</li>
-            </ul>
-          </div>
+        <article class="summary-card">
+          <img src="assets/img/panel-cameras.png" alt="Local UniFi Cameras" class="summary-img">
+          <h3>Local UniFi Camera Systems</h3>
+          <p>
+            Private, local-storage security cameras with no monthly fees and no one else
+            watching your footage.
+          </p>
+          <a href="cameras.html" class="summary-link">Learn more about cameras →</a>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- CARE / HUMAN SIDE -->
-  <section class="section section-split">
-    <div class="container split-inner">
-      <div class="split-main">
-        <h2>Engineering Meets Real Life</h2>
-        <p>
-          Every home is different – not just in square footage and wall types, but in how people actually live there.
-          We don’t design networks for floorplans; we design them for families.
-        </p>
-        <p>
-          We ask about your routines, work-from-home schedules, kids’ gaming setups, streaming habits,
-          and the rooms that matter most. Then we combine that with RF data to design a network around
-          your life, not just your router.
-        </p>
-      </div>
-      <aside class="split-aside">
-        <h3>RezNet Cares About Your Home</h3>
-        <p>We engineer with data, but we design around people.</p>
-        <ul>
-          <li>We suggest placement based on measurements.</li>
-          <li>We adjust based on how you use your home.</li>
-          <li>We explain every recommendation in plain language.</li>
-        </ul>
-        <div class="seal-wrap">
-          <img src="assets/img/seal-certified.png" alt="RezNet Certified Network" class="seal-img">
-          <span class="seal-caption">
-            RezNet Certified Network • Engineered • Validated • Approved
-          </span>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section id="process" class="section section-tight">
+  <!-- SHORT WHY REZNET TEASER -->
+  <section class="section section-dark section-tight">
     <div class="container">
-      <div class="section-header">
-        <h2>How RezNet Works</h2>
+      <div class="section-header center">
+        <h2>Why Homeowners Choose RezNet</h2>
         <p>
-          A simple, repeatable process that turns “my Wi-Fi sucks” into “wow, this just works.”
+          We don’t just plug things in. We educate, measure, and engineer – then we hand you
+          a report that proves it.
         </p>
       </div>
-      <div class="steps">
-        <div class="step">
-          <span class="step-number">1</span>
-          <h3>Learn Your Home</h3>
-          <p>We start with a conversation about what’s going wrong, what’s important, and what “good” looks like for your home.</p>
-        </div>
-        <div class="step">
-          <span class="step-number">2</span>
-          <h3>Map &amp; Model</h3>
-          <p>We build a predictive Wi-Fi model, marking walls, materials, and access-point options so you can see coverage before hardware moves.</p>
-        </div>
-        <div class="step">
-          <span class="step-number">3</span>
-          <h3>Survey &amp; Diagnose</h3>
-          <p>We walk your home with professional tools to measure real signal levels, noise, and interference.</p>
-        </div>
-        <div class="step">
-          <span class="step-number">4</span>
-          <h3>Engineer &amp; Optimize</h3>
-          <p>We tune channels, power, placement, wiring, and configuration – whether you keep existing hardware or upgrade to UniFi.</p>
-        </div>
-        <div class="step">
-          <span class="step-number">5</span>
-          <h3>Validate &amp; Certify</h3>
-          <p>You receive a RezNet Certified Network report with heatmaps, findings, and clear recommendations going forward.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY REZNET -->
-  <section id="why-reznet" class="section section-dark">
-    <div class="container">
-      <h2>Why Homeowners Trust RezNet</h2>
       <div class="pill-grid">
         <div class="pill">
           <h3>Education First</h3>
           <p>We explain what’s happening and why – no scare tactics, no jargon meant to confuse you.</p>
         </div>
         <div class="pill">
-          <h3>Data-Driven</h3>
-          <p>We use real measurements, heatmaps, and modeling tools, not “it should be fine.”</p>
-        </div>
-        <div class="pill">
           <h3>Optimize Before Replacing</h3>
           <p>We try to make the most of what you already own before recommending new hardware.</p>
-        </div>
-        <div class="pill">
-          <h3>Local &amp; Personal</h3>
-          <p>We live and work where you do. Davie County isn’t a market – it’s home.</p>
         </div>
         <div class="pill">
           <h3>Private by Default</h3>
           <p>Your cameras and network can stay local. We don’t push cloud subscriptions for everything.</p>
         </div>
-        <div class="pill">
-          <h3>Stamped &amp; Certified</h3>
-          <p>When we’re done, you get a RezNet Certified Network report that documents the work.</p>
-        </div>
+      </div>
+      <div class="center more-link">
+        <a href="why.html" class="summary-link">Read the full RezNet philosophy →</a>
       </div>
     </div>
   </section>
 
-  <!-- SERVICE AREA -->
-  <section id="areas" class="section section-tight">
+  <!-- SERVICE AREA + CTA -->
+  <section class="section section-tight">
     <div class="container">
-      <div class="section-header">
-        <h2>Serving Davie County &amp; The Triad</h2>
+      <div class="section-header center">
+        <h2>Based in Davie County. Here When You Need Us.</h2>
         <p>
-          RezNet is based in Davie County and focuses on helping homeowners and small businesses build Wi-Fi that actually works.
+          We’re local. When your Wi-Fi acts up again in six months, we’ll still be here – and
+          we’ll know your home.
         </p>
       </div>
-      <ul class="area-list">
+      <ul class="area-list center-list">
         <li>Mocksville</li>
         <li>Advance</li>
         <li>Bermuda Run / Kinderton</li>
@@ -248,48 +152,9 @@
         <li>Farmington</li>
         <li>Nearby Triad communities by request</li>
       </ul>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section section-dark">
-    <div class="container contact-inner">
-      <div class="contact-copy">
-        <h2>Let’s Fix Your Wi-Fi</h2>
-        <p>
-          Tell us what’s going wrong and we’ll recommend the right mix of optimization, wiring, and (if needed) UniFi upgrades –
-          always explained in plain language.
-        </p>
-        <p><strong>RezNet LLC – Davie County, NC</strong></p>
-        <p>
-          Phone: <span class="hl">[YOUR PHONE HERE]</span><br>
-          Email: <span class="hl">support@reznetllc.com</span>
-        </p>
-        <p class="contact-note">
-          Prefer to talk it through? Call or text and we’ll schedule a visit. This form will plug into online booking soon.
-        </p>
+      <div class="center cta-bottom">
+        <a href="contact.html" class="btn primary">Book a Wi-Fi Evaluation</a>
       </div>
-      <form class="contact-form">
-        <label>
-          Name
-          <input type="text" name="name" placeholder="Your name">
-        </label>
-        <label>
-          Email
-          <input type="email" name="email" placeholder="you@example.com">
-        </label>
-        <label>
-          City / Area
-          <input type="text" name="area" placeholder="Mocksville, Advance, Bermuda Run…">
-        </label>
-        <label>
-          What’s going wrong with your Wi-Fi?
-          <textarea name="message" rows="4" placeholder="Slow, inconsistent, dead zones, camera issues…"></textarea>
-        </label>
-        <button type="submit" class="btn primary" disabled>
-          Submit (form coming soon)
-        </button>
-      </form>
     </div>
   </section>
 

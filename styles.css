@@ -10,6 +10,94 @@
   --pill-bg: #181820;
   --shadow-soft: 0 22px 55px rgba(0, 0, 0, 0.8);
 }
+/* Page-type helpers */
+
+.page-home .hero {
+  padding-bottom: 2.5rem;
+}
+
+.page-service .hero,
+.page-service .hero-condensed {
+  padding-top: 4rem;
+}
+
+.hero-condensed {
+  padding-top: 3.5rem;
+}
+
+/* Centered helpers */
+
+.center {
+  text-align: center;
+}
+
+.center-list {
+  justify-content: center;
+}
+
+/* Service summary cards on home */
+
+.service-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.summary-card {
+  background: rgba(9,9,15,0.96);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 1.25rem 1.25rem 1.4rem;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.8);
+}
+
+.summary-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 0.6rem;
+}
+
+.summary-card h3 {
+  margin: 0 0 0.4rem;
+}
+
+.summary-card p {
+  margin: 0 0 0.7rem;
+  font-size: 0.9rem;
+  color: #DCDCE6;
+}
+
+.summary-link {
+  font-size: 0.85rem;
+  color: #FF6C6C;
+  text-decoration: none;
+}
+
+.summary-link:hover {
+  text-decoration: underline;
+}
+
+/* Narrow hero for service pages */
+
+.hero-narrow {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+}
+
+/* Small hero-card version */
+
+.hero-card.small {
+  width: 260px;
+}
+
+/* Bottom CTA on sections */
+
+.cta-bottom {
+  margin-top: 1.3rem;
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 *,
 *::before,
