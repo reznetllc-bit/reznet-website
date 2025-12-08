@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact RezNet – Book a Wi-Fi Evaluation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact RezNet LLC to book a Wi-Fi evaluation, UniFi install, or camera system consult in Davie County and the Triad.">
+  <link rel="icon" type="image/png" href="assets/img/header-logo.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-contact">
+  <div class="page-bg"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link">
+        <img src="assets/img/header-logo.png" alt="RezNet LLC" class="logo">
+      </a>
+      <nav class="nav">
+        <a href="wifi.html">Wi-Fi Optimization</a>
+        <a href="unifi.html">UniFi Wi-Fi</a>
+        <a href="cameras.html">Cameras</a>
+        <a href="triad.html">Triad Wi-Fi Guide</a>
+        <a href="why.html">Why RezNet</a>
+        <a href="contact.html" class="nav-cta nav-active">Book Evaluation</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section section-tight section-dark">
+    <div class="container contact-inner">
+      <div class="contact-copy">
+        <h1>Let’s Fix Your Wi-Fi.</h1>
+        <p>
+          Tell us what’s going wrong and we’ll recommend the right mix of optimization, wiring, and (if needed) new hardware – always explained in plain language.
+        </p>
+        <p><strong>RezNet LLC – Davie County, NC</strong></p>
+        <p>
+          Phone: <span class="hl">[YOUR PHONE HERE]</span><br>
+          Email: <span class="hl">support@reznetllc.com</span>
+        </p>
+        <p class="contact-note">
+          Prefer to talk? Call or text and we’ll schedule a time. This form will tie into online booking later – for now it sends straight to us.
+        </p>
+      </div>
+
+      <!-- Static form shell; connect to Netlify or backend later -->
+      <form class="contact-form">
+        <label>
+          Name
+          <input type="text" name="name" placeholder="Your name">
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" placeholder="you@example.com">
+        </label>
+        <label>
+          Phone
+          <input type="tel" name="phone" placeholder="(xxx) xxx-xxxx">
+        </label>
+        <label>
+          City / Area
+          <input type="text" name="area" placeholder="Mocksville, Advance, Bermuda Run…">
+        </label>
+        <label>
+          What can we help with?
+          <select name="service">
+            <option value="">Choose an option…</option>
+            <option>Wi-Fi Optimization</option>
+            <option>UniFi Wi-Fi Install</option>
+            <option>Camera System</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label>
+          Details
+          <textarea name="message" rows="4" placeholder="Tell us about your Wi-Fi or camera issues…"></textarea>
+        </label>
+        <button type="submit" class="btn primary" disabled>
+          Submit (form wiring coming soon)
+        </button>
+        <p class="form-note">
+          For now, use the phone or email above for fastest response – we’ll wire this form into our booking system next.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <img src="assets/img/logo-small.png" alt="RezNet" class="footer-logo">
+        <span>RezNet LLC &copy; <span id="year"></span>. All rights reserved.</span>
+      </div>
+      <div class="footer-right">
+        <span>Wi-Fi • Networking • Cameras • Local-Only Security</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
