@@ -292,12 +292,16 @@ img {
 
 /* Service cards */
 
+.service-summary-row {
+  display: flex;
+  justify-content: center;
+}
+
 .service-summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
   max-width: 900px;
-  margin: 0 auto;  /* centers the whole grid under the heading */
 }
 
 .summary-card {
@@ -465,10 +469,14 @@ img {
 /* Responsive */
 
 @media (max-width: 900px) {
-  .hero-inner,
-  .section-split .split-inner {
-    grid-template-columns: minmax(0, 1fr);
+  .service-summary-row {
+    justify-content: stretch;
   }
+
+  .service-summary-grid {
+    max-width: none;
+  }
+}
 
   .hero {
     padding-top: 3.4rem;
