@@ -145,6 +145,7 @@ img {
 }
 
 /* single-column hero */
+
 .hero-single {
   grid-template-columns: minmax(0, 1fr);
   justify-items: center;
@@ -184,6 +185,7 @@ img {
 }
 
 /* center hero buttons in single-column layout */
+
 .hero-single .hero-actions {
   display: inline-flex;
   justify-content: center;
@@ -196,47 +198,6 @@ img {
   color: var(--text-muted);
   max-width: 32rem;
   margin: 0 auto;
-}
-
-.hero-right {
-  display: flex;
-  justify-content: center;
-}
-
-.hero-card {
-  width: 260px;
-  max-width: 100%;
-  background: radial-gradient(circle at top, rgba(224,65,65,0.3), rgba(7,7,13,0.98));
-  border-radius: 22px;
-  border: 1px solid rgba(255,255,255,0.09);
-  box-shadow: var(--shadow-soft);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-card-img {
-  width: 100%;
-}
-
-.hero-card-footer {
-  padding: 0.75rem 1rem 0.9rem;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  font-size: 0.8rem;
-}
-
-.hero-card-tag {
-  display: inline-flex;
-  padding: 0.18rem 0.55rem;
-  border-radius: 999px;
-  border: 1px solid rgba(224,65,65,0.85);
-  font-size: 0.7rem;
-  margin-bottom: 0.2rem;
-}
-
-.hero-card-text {
-  display: block;
-  color: #D5D5E8;
 }
 
 /* Buttons */
@@ -352,12 +313,13 @@ img {
   text-decoration: underline;
 }
 
-/* Split section (home + maybe others) */
+/* Split section (home + others) */
 
 .section-split .split-inner {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   gap: 2.5rem;
+  align-items: flex-start;
 }
 
 .split-main p {
@@ -398,7 +360,7 @@ img {
   color: var(--text-muted);
 }
 
-/* Pill grid (why reznet + who-for) */
+/* Pill grid */
 
 .pill-grid {
   display: grid;
@@ -517,12 +479,13 @@ img {
 }
 
 .process-steps {
-  list-style: none;
   margin: 0;
   padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  counter-reset: step;
 }
 
 .process-steps li {
@@ -530,6 +493,7 @@ img {
   grid-template-columns: auto minmax(0, 1fr);
   gap: 0.8rem;
   align-items: flex-start;
+  counter-increment: step;
 }
 
 .step-badge {
@@ -542,6 +506,12 @@ img {
   align-items: center;
   justify-content: center;
   font-size: 0.85rem;
+}
+
+/* auto-number the steps */
+
+.step-badge::before {
+  content: counter(step);
 }
 
 .step-body h3 {
@@ -630,21 +600,17 @@ img {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .section-split .split-inner {
+    gap: 1.8rem;
+  }
+
   .process-card {
     grid-template-columns: minmax(0, 1fr);
+    padding: 1.7rem 1.4rem 1.7rem;
   }
 
   .hero {
     padding-top: 3.4rem;
-  }
-
-  .hero-right {
-    order: -1;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-card {
-    width: 220px;
   }
 
   .nav {
@@ -672,9 +638,5 @@ img {
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .process-card {
-    padding: 1.7rem 1.4rem 1.7rem;
   }
 }
