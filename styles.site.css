@@ -178,9 +178,12 @@ img {
   gap: 0.8rem;
   margin-bottom: 0.8rem;
 }
-/* center buttons when hero is single-column */
+/* center hero buttons in single-column layout */
 .hero-single .hero-actions {
+  display: inline-flex;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-subtext {
