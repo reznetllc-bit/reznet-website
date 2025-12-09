@@ -178,6 +178,10 @@ img {
   gap: 0.8rem;
   margin-bottom: 0.8rem;
 }
+/* center buttons when hero is single-column */
+.hero-single .hero-actions {
+  justify-content: center;
+}
 
 .hero-subtext {
   font-size: 0.82rem;
