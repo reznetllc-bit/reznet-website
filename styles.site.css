@@ -332,6 +332,8 @@ img {
   border: 1px solid rgba(255,255,255,0.08);
   padding: 1.4rem 1.4rem 1.5rem;
   box-shadow: var(--shadow-soft);
+  max-width: 420px;
+  margin-left: auto;
 }
 
 .split-aside h3 {
@@ -348,15 +350,16 @@ img {
 .seal-wrap {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
 }
 
 .seal-img {
-  width: 52px;
+  width: 34px; /* smaller seal so it doesn’t dominate */
 }
 
 .seal-caption {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
 }
 
@@ -547,6 +550,8 @@ img {
   margin-top: 0.25rem;
 }
 
+/* Generic small note text */
+
 .note {
   font-size: 0.82rem;
   color: var(--text-muted);
@@ -602,6 +607,12 @@ img {
 
   .section-split .split-inner {
     gap: 1.8rem;
+  }
+
+  .split-aside {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .process-card {
