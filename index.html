@@ -1,343 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>RezNet LLC – Coming Soon</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="RezNet LLC is building the new standard for home Wi-Fi, UniFi installs, and local-only camera systems in Davie County and the Triad.">
-  <link rel="icon" type="image/png" href="assets/img/header-logo.png">
-  <style>
-    :root {
-      --reznet-red: #E04141;
-      --reznet-red-deep: #B5121B;
-      --bg-main: #050507;
-      --text-main: #F4F4F4;
-      --text-muted: #A3A3B0;
-      --border-subtle: #24242C;
-      --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.9);
-    }
-
-    * , *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-      background: #000;
-      color: var(--text-main);
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .bg-layer {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background:
-        radial-gradient(circle at top left, rgba(224,65,65,0.34), transparent 60%),
-        radial-gradient(circle at bottom right, rgba(181,18,27,0.24), transparent 55%),
-        linear-gradient(to bottom, #000000 0%, #050507 45%, #050507 100%);
-    }
-
-    .page-shell {
-      min-height: 100vh;
-      padding: 3rem 1.25rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .coming-card {
-      width: 100%;
-      max-width: 840px;
-      background: radial-gradient(circle at top, rgba(224,65,65,0.22), rgba(7,7,13,0.98));
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: var(--shadow-soft);
-      padding: 2.2rem 2.3rem 2rem;
-    }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.3rem;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-    }
-
-    .brand-logo {
-      height: 34px;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-name {
-      font-size: 0.95rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .brand-sub {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    .status-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(6,6,12,0.96);
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-
-    .status-chip .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #2DF08A;
-      box-shadow: 0 0 8px rgba(45,240,138,0.8);
-    }
-
-    .logo-wrap {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 0.7rem;
-    }
-
-    .hero-logo {
-      max-width: 180px;
-      filter: drop-shadow(0 18px 40px rgba(0,0,0,0.9));
-    }
-
-    .tagline {
-      text-align: center;
-      font-size: 0.9rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin: 0 0 0.6rem;
-    }
-
-    .coming-card h1 {
-      text-align: center;
-      font-size: 1.9rem;
-      margin: 0 0 0.9rem;
-    }
-
-    .lead {
-      text-align: center;
-      max-width: 34rem;
-      margin: 0 auto 1.8rem;
-      color: #E2E2EF;
-      font-size: 0.98rem;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 1.8rem;
-      margin-bottom: 1.6rem;
-    }
-
-    .card-col h2 {
-      font-size: 1.05rem;
-      margin: 0 0 0.6rem;
-    }
-
-    .card-col ul {
-      margin: 0;
-      padding-left: 1.2rem;
-      font-size: 0.9rem;
-      color: #E0E0ED;
-    }
-
-    .card-col li + li {
-      margin-top: 0.25rem;
-    }
-
-    .card-col p {
-      font-size: 0.9rem;
-      color: #E0E0ED;
-      margin: 0 0 0.6rem;
-    }
-
-    .contact-lines {
-      margin-top: 0.4rem;
-    }
-
-    .hl {
-      color: var(--reznet-red);
-    }
-
-    .note {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .status-foot {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 0.9rem;
-    }
-
-    .site-footer {
-      padding: 0.8rem 0;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      background: rgba(3,3,6,0.98);
-      font-size: 0.8rem;
-    }
-
-    .footer-inner {
-      max-width: 840px;
-      margin: 0 auto;
-      padding: 0 1.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.8rem;
-      color: #C9C9D4;
-    }
-
-    .foot-meta {
-      color: var(--text-muted);
-    }
-
-    @media (max-width: 800px) {
-      .page-shell {
-        padding: 2.5rem 1rem 1.8rem;
-        align-items: flex-start;
-      }
-
-      .coming-card {
-        padding: 2rem 1.6rem 1.8rem;
-      }
-
-      .card-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    @media (max-width: 550px) {
-      .card-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-logo {
-        max-width: 150px;
-      }
-
-      .coming-card h1 {
-        font-size: 1.6rem;
-      }
-
-      .lead {
-        font-size: 0.9rem;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
+  <meta charset="utf-8">
+  <title>RezNet LLC — Residential Network Authority</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Inspection-grade home network assessments for buyers, sellers, and realtors. Consulting first. UniFi installs by request.">
+  <link rel="icon" href="/assets/img/logo-small.png">
+  <link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
-  <div class="bg-layer"></div>
+  <div class="bg"></div>
 
-  <main class="page-shell">
-    <section class="coming-card">
-      <div class="card-header">
-        <div class="brand">
-          <img src="assets/img/header-logo.png" alt="RezNet LLC" class="brand-logo">
-          <div class="brand-text">
-            <span class="brand-name">RezNet LLC</span>
-            <span class="brand-sub">Davie County • North Carolina</span>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="/">
+        <img src="/assets/img/header-logo.png" alt="RezNet">
+        <div>
+          <div class="name">RezNet LLC</div>
+          <div class="sub">Residential Network Authority</div>
+        </div>
+      </a>
+
+      <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰ Menu</button>
+
+      <nav class="nav" data-nav>
+        <a href="/realtors">Realtors</a>
+        <a href="/assessment">Assessment</a>
+        <a href="/unifi">UniFi (By request)</a>
+        <a href="/about">About</a>
+        <a class="cta" href="/contact">Book</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="scan"></div>
+      <div class="container">
+        <div class="kicker" data-reveal><span class="dot"></span> Consulting First • Installs by Request • Davie County / Triad</div>
+        <h1 data-reveal>Network Assessments that feel like a Home Inspection.</h1>
+        <p class="lead" data-reveal>
+          RezNet verifies Wi-Fi coverage, wired readiness, and network health for <strong>buyers, sellers, and realtors</strong> —
+          so you don’t inherit hidden connectivity problems after move-in.
+        </p>
+        <div class="hero-actions" data-reveal>
+          <a class="btn primary" href="/contact">Book a Network Assessment</a>
+          <a class="btn" href="/realtors">Realtor Packages</a>
+        </div>
+
+        <div class="hero-card" data-reveal>
+          <div class="hero-metrics">
+            <div class="metric"><div class="top">Core Service</div><div class="val"><span class="hl">Assessment</span> first</div></div>
+            <div class="metric"><div class="top">Specialty</div><div class="val">UniFi-ready plans</div></div>
+            <div class="metric"><div class="top">Optional</div><div class="val">Install by request</div></div>
           </div>
         </div>
-        <span class="status-chip">
-          <span class="dot"></span>
-          Site: Under Active Build
-        </span>
       </div>
+    </section>
 
-      <div class="logo-wrap">
-        <!-- If hero-logo.png doesn’t exist, change to header-logo.png -->
-        <img src="assets/img/hero-logo.png" alt="RezNet" class="hero-logo">
-      </div>
+    <section class="section">
+      <div class="container">
+        <div class="split">
+          <div>
+            <div class="badge" data-reveal>Consult-first model</div>
+            <h2 class="h2" data-reveal>What RezNet does (and doesn’t do).</h2>
+            <p class="p" data-reveal>
+              RezNet is the independent authority that measures and explains home connectivity.
+              We don’t start by selling hardware. We start by proving what’s happening — then you decide.
+            </p>
 
-      <p class="tagline">Home Wi-Fi, Engineered Right.</p>
+            <div class="grid-3">
+              <div class="card" data-reveal>
+                <div class="title">1) Network Assessment</div>
+                <p class="p">Room-by-room findings + a written report you can act on.</p>
+                <ul><li>Ideal for buyers/sellers</li><li>Turns “Wi-Fi feels bad” into proof</li><li>Clear ranked issues</li></ul>
+              </div>
 
-      <h1>We’re Rewiring How Home Networks Are Done.</h1>
+              <div class="card" data-reveal>
+                <div class="title">2) Design & Spec Plan</div>
+                <p class="p">If upgrades are needed, we deliver a clean plan (UniFi-friendly).</p>
+                <ul><li>AP placement guidance</li><li>Wiring + closet plan</li><li>Upgrade roadmap</li></ul>
+              </div>
 
-      <p class="lead">
-        RezNet is building a new standard for home Wi-Fi optimization, wired UniFi installs,
-        and private local-only camera systems for Davie County and the Triad.
-        The full site is almost ready.
-      </p>
+              <div class="card" data-reveal>
+                <div class="title">3) Install (By request)</div>
+                <p class="p">If you want RezNet to execute, we install or oversee and verify performance.</p>
+                <ul><li>UniFi specialization initially</li><li>Clean, labeled, tested</li><li>Handover documentation</li></ul>
+              </div>
+            </div>
+          </div>
 
-      <div class="card-grid">
-        <div class="card-col">
-          <h2>What’s Coming</h2>
-          <ul>
-            <li>Wi-Fi Optimization you can actually understand</li>
-            <li>Wired UniFi Wi-Fi for whole-home coverage</li>
-            <li>Local-storage camera systems with no cloud fees</li>
-            <li>Triad home-style Wi-Fi guides and resources</li>
-          </ul>
+          <aside class="panel" data-reveal>
+            <div class="badge">Prime Targets</div>
+            <h3 style="margin:0.65rem 0 0.35rem;">Realtors • Buyers • Sellers</h3>
+            <p class="p">Connectivity is invisible infrastructure. RezNet makes it measurable, explainable, and fixable.</p>
+            <div class="hero-actions">
+              <a class="btn primary" href="/realtors">Realtor Packages</a>
+              <a class="btn" href="/contact">Book</a>
+            </div>
+          </aside>
         </div>
-        <div class="card-col">
-          <h2>How to Reach Us Now</h2>
-          <p>
-            We’re already taking on projects while the new site is under construction.
-            If your Wi-Fi or cameras are driving you crazy, reach out.
-          </p>
-          <p class="contact-lines">
-            📞 <span class="hl">[YOUR PHONE HERE]</span><br>
-            📧 <span class="hl">support@reznetllc.com</span>
-          </p>
-          <p class="note">
-            Call, text, or email and we’ll schedule a Wi-Fi evaluation or consult.
-          </p>
-        </div>
       </div>
+    </section>
 
-      <div class="status-foot">
-        RezNet Site Status: <strong>Coming Soon</strong> – live launch is in active development.
+    <section class="section dark">
+      <div class="container">
+        <h2 class="h2" data-reveal>Local, accountable, inspection-grade.</h2>
+        <p class="p" data-reveal>Serving Davie County and the Triad. When you need follow-up, you’re not calling a random 1-800 number.</p>
+        <div class="grid-3">
+          <div class="card" data-reveal>
+            <div class="title">Davie County</div>
+            <ul><li>Mocksville</li><li>Advance</li><li>Bermuda Run / Kinderton</li><li>Cooleemee</li><li>Farmington</li></ul>
+          </div>
+          <div class="card" data-reveal>
+            <div class="title">Triad (by request)</div>
+            <ul><li>Winston-Salem</li><li>Clemmons</li><li>Greensboro</li><li>High Point</li><li>Surrounding areas</li></ul>
+          </div>
+          <div class="card" data-reveal>
+            <div class="title">Start here</div>
+            <p class="p">Start with an assessment. If upgrades are needed, we’ll give you a clean path forward.</p>
+            <div class="hero-actions">
+              <a class="btn primary" href="/contact">Book</a>
+              <a class="btn" href="/assessment">What’s included</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <span>RezNet LLC &copy; <span id="year"></span>. All rights reserved.</span>
-      <span class="foot-meta">Wi-Fi • Networking • Cameras • Local-Only Security</span>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>RezNet LLC © <span data-year></span></div>
+      <div>Consulting First • UniFi-ready • Install by request</div>
     </div>
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script src="/assets/js/site.js"></script>
 </body>
 </html>
