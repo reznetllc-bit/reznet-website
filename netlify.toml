@@ -1,19 +1,9 @@
 [build]
   publish = "public"
 
-# ---------------------------
-# ROOT SITE = COMING SOON
-# ---------------------------
-[[redirects]]
-  from = "/"
-  to = "/coming-soon.html"
-  status = 200
-  force = true
-
-# ---------------------------
-# PREVIEW SITE (full build)
-# ---------------------------
-# Allow /preview and /preview/ to serve the preview home page
+# -------------------------------
+# PREVIEW ROUTES (must come first)
+# -------------------------------
 [[redirects]]
   from = "/preview"
   to = "/preview/index.html"
@@ -24,7 +14,6 @@
   to = "/preview/index.html"
   status = 200
 
-# Pretty routes for preview pages
 [[redirects]]
   from = "/preview/about"
   to = "/preview/pages/about.html"
@@ -41,6 +30,11 @@
   status = 200
 
 [[redirects]]
+  from = "/preview/home-types"
+  to = "/preview/pages/home-types.html"
+  status = 200
+
+[[redirects]]
   from = "/preview/implementation"
   to = "/preview/pages/implementation.html"
   status = 200
@@ -50,8 +44,15 @@
   to = "/preview/pages/contact.html"
   status = 200
 
-# (Optional safety) If someone hits old top-level routes, keep them on Coming Soon
+[[redirects]]
+  from = "/preview/thanks"
+  to = "/preview/pages/thanks.html"
+  status = 200
+
+# -------------------------------
+# ROOT = COMING SOON (hide all)
+# -------------------------------
 [[redirects]]
   from = "/*"
-  to = "/coming-soon.html"
+  to = "/index.html"
   status = 200
