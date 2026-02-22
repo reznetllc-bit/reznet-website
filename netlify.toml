@@ -1,18 +1,27 @@
-# /home/drago/dev/reznet-website/netlify.toml
-
 [build]
   publish = "public"
 
-# --- PREVIEW SITE ---
-# Everything under /preview should serve from /public/preview/ as static files.
+# Order matters.
+
+# 1) Allow real files through (assets + favicon)
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/assets/img/favicon.ico"
+  status = 200
+
+# 2) Allow the internal preview
 [[redirects]]
   from = "/preview/*"
   to = "/preview/:splat"
   status = 200
 
-# --- COMING SOON GATE ---
-# Catch-all to coming-soon, but DO NOT force it (so real files like /assets/* still work).
+# 3) Hide everything else behind Coming Soon (root index)
 [[redirects]]
   from = "/*"
-  to = "/coming-soon.html"
+  to = "/index.html"
   status = 200
