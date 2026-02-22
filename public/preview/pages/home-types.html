@@ -1,153 +1,136 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Home Types — RezNet LLC</title>
-  <meta name="description" content="How different home structures affect Wi-Fi, wiring, and network design — and what’s actually realistic."/>
-  <link rel="stylesheet" href="/preview/assets/css/site.css"/>
+  <meta name="description" content="Why structure matters: materials, wiring reality, interference, layout, and what Wi-Fi can’t do. RezNet sets expectations and builds plans that match the house." />
+  <link rel="icon" href="/preview/assets/img/logo-small.png" />
+  <link rel="stylesheet" href="/preview/assets/css/site.css" />
 </head>
 
 <body>
-<div class="bg" aria-hidden="true"></div>
-
-<header class="header">
-  <div class="container header-inner">
-    <a class="brand" href="/preview/">
-      <img src="/preview/assets/img/logo-small.png" alt="RezNet"/>
-      <div>
-        <div class="name">RezNet LLC</div>
-        <div class="sub">Residential Network Authority</div>
-      </div>
-    </a>
-
-    <button class="nav-toggle" type="button" data-nav-toggle>Menu</button>
-
-    <nav class="nav" data-nav>
-      <a href="/preview/realtors">Realtors</a>
-      <a href="/preview/assessment">Assessment</a>
-      <a class="cta" href="/preview/home-types">Home Types</a>
-      <a href="/preview/implementation">Implementation</a>
-      <a href="/preview/about">About</a>
-      <a class="cta" href="/preview/contact">Book</a>
-    </nav>
-  </div>
-</header>
-
-<main class="container">
-
-  <section class="hero">
-    <div class="kicker" data-reveal><span class="dot"></span> Reality check</div>
-    <h1 data-reveal>Different houses have different network limits.</h1>
-    <p class="lead" data-reveal>
-      Wi-Fi is physics. Wiring is infrastructure. Layout is destiny. The fastest way to waste money is to ignore the structure of the home.
-    </p>
-    <div class="hero-actions" data-reveal>
-      <a class="btn primary" href="/preview/assessment">Start with Assessment</a>
-      <a class="btn" href="/preview/contact">Book</a>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/preview/">
+        <img src="/preview/assets/img/header-logo.png" alt="RezNet" />
+        <div class="brand-text">
+          <div class="brand-name">RezNet LLC</div>
+          <div class="brand-tag">Residential Network Authority</div>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="/preview/assessment">Assessment</a>
+        <a class="cta" href="/preview/home-types">Home Types</a>
+        <a href="/preview/realtors">Realtors</a>
+        <a href="/preview/implementation">Implementation</a>
+        <a href="/preview/about">About</a>
+        <a class="cta" href="/preview/contact">Book</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <section class="section">
-    <h2 class="h2" data-reveal>House types & common constraints</h2>
-
-    <div class="grid-3">
-      <div class="card" data-reveal>
-        <div class="title">Brick / masonry-heavy</div>
-        <ul class="bullets">
-          <li>Signal attenuation is real (especially 5GHz)</li>
-          <li>“One router” rarely works across floors</li>
-          <li>Best fix is proper AP placement + wired backhaul</li>
-        </ul>
-      </div>
-
-      <div class="card" data-reveal>
-        <div class="title">Two-story + long hallways</div>
-        <ul class="bullets">
-          <li>Roaming and overlap become the issue</li>
-          <li>Stability > raw throughput</li>
-          <li>Ceiling AP centerline usually beats “mesh in corners”</li>
-        </ul>
-      </div>
-
-      <div class="card" data-reveal>
-        <div class="title">New builds (structured wiring)</div>
-        <ul class="bullets">
-          <li>Often un-terminated or mispatched</li>
-          <li>Closet readiness decides everything</li>
-          <li>Once wiring is correct, the rest gets easy</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="section dark">
-    <div class="badge" data-reveal>Limitations & truths</div>
-    <h2 class="h2" data-reveal>What Wi-Fi cannot do</h2>
-
-    <div class="grid-3">
-      <div class="card" data-reveal>
-        <div class="title">Fix bad backhaul</div>
-        <p>
-          If the “mesh node” is feeding on weak signal, it will amplify the problem — not solve it.
+  <main>
+    <section class="hero hero-tight">
+      <div class="container">
+        <div class="pill" data-reveal><span class="dot"></span> The part nobody explains</div>
+        <h1 class="h1" data-reveal>Home Types & Real Limits</h1>
+        <p class="lead" data-reveal>
+          Most network advice ignores the biggest variable: your home.
+          RezNet plans around structure, not wishful thinking.
         </p>
       </div>
+    </section>
 
-      <div class="card" data-reveal>
-        <div class="title">Ignore materials</div>
-        <p>
-          Brick, tile, mirrors, fireplaces, metal ducting, radiant barriers — all impact coverage and stability.
-        </p>
-      </div>
+    <section class="section">
+      <div class="container">
+        <h2 class="h2" data-reveal>The truths</h2>
+        <div class="grid-3" data-reveal>
+          <div class="card">
+            <div class="title">Wi-Fi doesn’t “push through” structure</div>
+            <p class="muted">Dense materials, foil-backed insulation, brick, and HVAC can break beautiful lab results.</p>
+          </div>
+          <div class="card">
+            <div class="title">Speed ≠ stability</div>
+            <p class="muted">A fast speed test can coexist with drops, jitter, and “random” failures.</p>
+          </div>
+          <div class="card">
+            <div class="title">Backhaul decides everything</div>
+            <p class="muted">If your backhaul is weak, no number of nodes creates real reliability.</p>
+          </div>
+        </div>
 
-      <div class="card" data-reveal>
-        <div class="title">Replace wiring</div>
-        <p>
-          When wiring is possible, wired backhaul is the most reliable upgrade you can buy.
-        </p>
+        <div class="callout" data-reveal>
+          <div class="callout-title">Empowerment</div>
+          <p>
+            RezNet’s job is to give you a plan that matches reality — so you can stop blaming yourself, stop blaming the ISP blindly,
+            and stop buying equipment as a coping mechanism.
+          </p>
+        </div>
       </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="h2" data-reveal>Common home profiles</h2>
+
+        <div class="grid-2" data-reveal>
+          <div class="card">
+            <div class="title">Older homes (plaster/lathe, additions)</div>
+            <ul class="list">
+              <li>Signal is unpredictable room-to-room</li>
+              <li>Wiring may be incomplete or inconsistent</li>
+              <li>Layout requires strategic AP placement</li>
+              <li>Often benefits from targeted wiring for backhaul</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="title">New builds (great on paper, often unfinished)</div>
+            <ul class="list">
+              <li>Pre-wire may exist but not terminated or labeled</li>
+              <li>Closets may be poorly ventilated or poorly located</li>
+              <li>Builder network “packages” prioritize cost over design</li>
+              <li>Perfect scenario for RezNet verification + roadmap</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="title">Multi-story (coverage is geometry)</div>
+            <ul class="list">
+              <li>Vertical coverage is not guaranteed</li>
+              <li>Stairwells and mechanical chases matter</li>
+              <li>Placement beats power</li>
+              <li>Backhaul makes multi-floor stable</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="title">Large footprints / long runs</div>
+            <ul class="list">
+              <li>“One router” is rarely correct</li>
+              <li>Mesh can work, but only with correct backhaul</li>
+              <li>Edge areas need measured planning</li>
+              <li>RezNet prevents overbuilding and underbuilding</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="hero-actions" data-reveal>
+          <a class="btn primary" href="/preview/assessment">Get the Assessment</a>
+          <a class="btn" href="/preview/contact">Book</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>RezNet LLC © <span data-year></span></div>
+      <div>Plans that match structure</div>
     </div>
+  </footer>
 
-    <p class="p" data-reveal style="margin-top:12px;">
-      RezNet’s job is to tell you what’s realistic for your specific house — before you spend money.
-    </p>
-  </section>
-
-  <section class="section">
-    <h2 class="h2" data-reveal>How RezNet handles this</h2>
-
-    <div class="grid-3">
-      <div class="card" data-reveal>
-        <div class="title">We map behavior by area</div>
-        <p>Coverage + stability + interference patterns. Not just a speed test.</p>
-      </div>
-
-      <div class="card" data-reveal>
-        <div class="title">We evaluate wiring readiness</div>
-        <p>Closet, backhaul options, termination, and what’s feasible.</p>
-      </div>
-
-      <div class="card" data-reveal>
-        <div class="title">We give a phased plan</div>
-        <p>Immediate wins, then upgrades — budget-aware and defensible.</p>
-      </div>
-    </div>
-
-    <div class="hero-actions" data-reveal style="margin-top:14px;">
-      <a class="btn primary" href="/preview/assessment">See the deliverable</a>
-      <a class="btn" href="/preview/contact">Book</a>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="container footer-inner">
-    <div>RezNet LLC © <span data-year></span></div>
-    <div>Assessment-first • Install by request</div>
-  </div>
-</footer>
-
-<script src="/preview/assets/js/site.js"></script>
+  <script src="/preview/assets/js/site.js"></script>
 </body>
 </html>

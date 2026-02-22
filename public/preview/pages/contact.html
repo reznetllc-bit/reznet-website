@@ -1,98 +1,87 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Book — RezNet LLC</title>
-  <meta name="description" content="Book an assessment. Consult-first, evidence-based. Implementation optional by request."/>
-  <link rel="stylesheet" href="/preview/assets/css/site.css"/>
+  <meta name="description" content="Book a RezNet assessment. Tell us the home type, goals, and the symptoms. We’ll confirm scope and schedule." />
+  <link rel="icon" href="/preview/assets/img/logo-small.png" />
+  <link rel="stylesheet" href="/preview/assets/css/site.css" />
 </head>
 
 <body>
-<div class="bg" aria-hidden="true"></div>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/preview/">
+        <img src="/preview/assets/img/header-logo.png" alt="RezNet" />
+        <div class="brand-text">
+          <div class="brand-name">RezNet LLC</div>
+          <div class="brand-tag">Residential Network Authority</div>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="/preview/assessment">Assessment</a>
+        <a href="/preview/home-types">Home Types</a>
+        <a href="/preview/realtors">Realtors</a>
+        <a href="/preview/implementation">Implementation</a>
+        <a href="/preview/about">About</a>
+        <a class="cta" href="/preview/contact">Book</a>
+      </nav>
+    </div>
+  </header>
 
-<header class="header">
-  <div class="container header-inner">
-    <a class="brand" href="/preview/">
-      <img src="/preview/assets/img/logo-small.png" alt="RezNet"/>
-      <div>
-        <div class="name">RezNet LLC</div>
-        <div class="sub">Residential Network Authority</div>
-      </div>
-    </a>
-
-    <button class="nav-toggle" type="button" data-nav-toggle>Menu</button>
-
-    <nav class="nav" data-nav>
-      <a href="/preview/realtors">Realtors</a>
-      <a href="/preview/assessment">Assessment</a>
-      <a href="/preview/implementation">Implementation</a>
-      <a href="/preview/about">About</a>
-      <a class="cta" href="/preview/contact">Book</a>
-    </nav>
-  </div>
-</header>
-
-<main class="container">
-
-  <section class="hero">
-    <div class="kicker" data-reveal><span class="dot"></span> Book</div>
-    <h1 data-reveal>Book an assessment.</h1>
-    <p class="lead" data-reveal>
-      Tell us what you’re seeing. We’ll determine what’s real, what’s not, and what to do next — with evidence.
-    </p>
-  </section>
-
-  <section class="section">
-    <h2 class="h2" data-reveal>Fast intake</h2>
-    <p class="p" data-reveal>
-      (This is the placeholder booking page. We’ll wire it to your real booking + payments next.)
-    </p>
-
-    <div class="grid-3">
-      <div class="card" data-reveal>
-        <div class="title">What’s happening?</div>
-        <ul class="bullets">
-          <li>Dead zones / slow rooms</li>
-          <li>Video calls drop</li>
-          <li>Cameras buffer</li>
-          <li>“Mesh is weird”</li>
-        </ul>
-      </div>
-
-      <div class="card" data-reveal>
-        <div class="title">What you get</div>
-        <ul class="bullets">
-          <li>Inspection-grade report</li>
-          <li>Verdict + findings</li>
-          <li>Phased roadmap</li>
-          <li>Optional implementation spec</li>
-        </ul>
-      </div>
-
-      <div class="card" data-reveal>
-        <div class="title">Next step</div>
-        <p class="p">
-          Email / phone / calendar embed goes here. For now, use the contact method you prefer.
+  <main>
+    <section class="hero hero-tight">
+      <div class="container">
+        <div class="pill" data-reveal><span class="dot"></span> Book • Assess • Plan</div>
+        <h1 class="h1" data-reveal>Book an Assessment</h1>
+        <p class="lead muted" data-reveal>
+          Tell us the basics. We’ll confirm scope, answer questions, and schedule.
+          Assessment-first — implementation is optional and only by request.
         </p>
+
+        <div class="grid-2" data-reveal>
+          <div class="card">
+            <div class="title">Fast intake (copy/paste)</div>
+            <ul class="list">
+              <li>City/Area:</li>
+              <li>Home type (new/old, floors, sqft):</li>
+              <li>Symptoms (drops, dead zones, cameras, WFH):</li>
+              <li>ISP plan + modem/router (if known):</li>
+              <li>Wired? (Ethernet/coax present?):</li>
+              <li>Timeline (ASAP / pre-list / before move-in):</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="title">What happens next</div>
+            <ul class="list">
+              <li>We confirm scope</li>
+              <li>We schedule the visit</li>
+              <li>You receive the report + roadmap</li>
+              <li>Optional: certification and/or implementation</li>
+            </ul>
+            <p class="mini-note muted">
+              The goal is homeowner clarity: <b>ISP vs home</b>, real limitations, and a plan that holds up.
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-actions" data-reveal>
+          <a class="btn primary" href="/preview/thanks">Continue</a>
+          <a class="btn" href="/preview/assessment">See deliverable</a>
+        </div>
       </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>RezNet LLC © <span data-year></span></div>
+      <div>We replace uncertainty with evidence</div>
     </div>
+  </footer>
 
-    <div class="hero-actions" data-reveal style="margin-top:14px;">
-      <a class="btn primary" href="/preview/assessment">See the deliverable</a>
-      <a class="btn" href="/preview/realtors">Realtor Packages</a>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="container footer-inner">
-    <div>RezNet LLC © <span data-year></span></div>
-    <div>Book • Assess • Plan • Optional implementation</div>
-  </div>
-</footer>
-
-<script src="/preview/assets/js/site.js"></script>
+  <script src="/preview/assets/js/site.js"></script>
 </body>
 </html>

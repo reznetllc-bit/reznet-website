@@ -2,54 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>RezNet LLC — Launching Soon</title>
-  <meta name="description" content="RezNet LLC — Residential Network Authority. Launching soon." />
-  <link rel="stylesheet" href="/assets/css/site.css?v=launch1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RezNet LLC — Coming Soon</title>
+  <meta name="description" content="RezNet LLC is the Residential Network Authority. Inspection-grade assessments that give homeowners clarity, stability, and control." />
+  <link rel="icon" href="/preview/assets/img/logo-small.png" />
+  <style>
+    :root{color-scheme:dark}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:#05060a; color:#e9eef7}
+    .wrap{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:48px 18px}
+    .card{max-width:920px; width:100%; border:1px solid rgba(255,255,255,.10); background:rgba(12,14,22,.65);
+      border-radius:18px; padding:28px; box-shadow: 0 20px 80px rgba(0,0,0,.55)}
+    .top{display:flex; gap:14px; align-items:center}
+    .mark{width:44px;height:44px;border-radius:12px;background:rgba(255,0,64,.14);display:grid;place-items:center;border:1px solid rgba(255,0,64,.25)}
+    .mark span{display:block;width:14px;height:14px;border-radius:99px;background:#ff0040; box-shadow:0 0 30px rgba(255,0,64,.6)}
+    h1{margin:14px 0 6px; font-size:34px; letter-spacing:-.02em}
+    p{margin:0; line-height:1.55; color:rgba(233,238,247,.86)}
+    .pill{display:inline-flex; gap:8px; align-items:center; font-size:12px; text-transform:uppercase; letter-spacing:.18em;
+      padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.04); margin:14px 0}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px}
+    .box{border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.03); border-radius:14px; padding:14px}
+    .k{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:rgba(233,238,247,.7)}
+    .v{margin-top:6px; font-weight:600}
+    .cta{margin-top:18px; display:flex; gap:10px; flex-wrap:wrap}
+    a.btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:12px 14px; border-radius:12px;
+      text-decoration:none; color:#e9eef7; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04)}
+    a.btn.primary{border-color:rgba(255,0,64,.35); background:rgba(255,0,64,.14)}
+    .fine{margin-top:16px; font-size:13px; color:rgba(233,238,247,.68)}
+    @media (max-width:860px){.grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="/">
-        <img src="/assets/img/logo-small.png" alt="RezNet" />
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <div class="mark" aria-hidden="true"><span></span></div>
         <div>
-          <div class="brand-title">RezNet LLC</div>
-          <div class="brand-sub">Residential Network Authority</div>
+          <div class="pill">Residential Network Authority • Coming Soon</div>
+          <h1>RezNet LLC</h1>
+          <p>
+            The independent layer between homeowners and the hardware industry —
+            delivering <b>clarity</b>, <b>stability</b>, and <b>control</b> in the most confusing part of modern life: the home network.
+          </p>
         </div>
-      </a>
-      <div class="nav-links">
-        <span class="pill">Launching soon</span>
+      </div>
+
+      <div class="grid">
+        <div class="box">
+          <div class="k">What we do</div>
+          <div class="v">Inspection-grade network assessments</div>
+          <p class="fine">Evidence, verdict, roadmap. No guessing. No upsell-first “solutions.”</p>
+        </div>
+        <div class="box">
+          <div class="k">Who it’s for</div>
+          <div class="v">Homeowners • Buyers/Sellers • Realtors</div>
+          <p class="fine">Protect transactions, reduce surprises, and make network performance predictable.</p>
+        </div>
+        <div class="box">
+          <div class="k">The outcome</div>
+          <div class="v">“Is it my ISP or my home?” answered.</div>
+          <p class="fine">Plus hidden risk flags and a plan you can execute over time.</p>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a class="btn primary" href="/preview/">Preview the new site</a>
+        <a class="btn" href="/preview/contact">Book (early access)</a>
+      </div>
+
+      <div class="fine">
+        RezNet is assessment-first. Implementation is optional and only by request.
       </div>
     </div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <div class="kicker"><span class="dot"></span> Coming Soon</div>
-      <h1>RezNet LLC is almost live.</h1>
-      <p class="lead">
-        Inspection-grade network assessments for buyers, sellers, and realtors — with evidence,
-        prioritized findings, and a phased upgrade roadmap.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn primary" href="/preview">Preview Site</a>
-        <a class="btn" href="/preview/contact">Contact</a>
-      </div>
-
-      <div class="mini-note" style="margin-top:14px; opacity:.85">
-        (Internal preview at <code>/preview</code>)
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>RezNet LLC © <span data-year></span></div>
-      <div>Assessment-first • Certification available • Implementation by request</div>
-    </div>
-  </footer>
-
-  <script src="/assets/js/site.js?v=launch1"></script>
+  </div>
 </body>
 </html>
