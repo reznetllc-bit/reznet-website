@@ -1,9 +1,7 @@
 [build]
-  publish = "."
+  publish = "public"
 
-# -----------------------
-# PREVIEW (real site)
-# -----------------------
+# PREVIEW ROUTES
 [[redirects]]
   from = "/preview"
   to = "/preview/index.html"
@@ -49,10 +47,7 @@
   to = "/preview/pages/thanks.html"
   status = 200
 
-# -----------------------
-# PUBLIC (coming soon gate)
-# anything NOT /preview stays on /
-# -----------------------
+# PUBLIC GATE (optional)
 [[redirects]]
   from = "/realtors"
   to = "/"
@@ -80,10 +75,5 @@
 
 [[redirects]]
   from = "/home-types"
-  to = "/"
-  status = 302
-
-[[redirects]]
-  from = "/thanks"
   to = "/"
   status = 302
