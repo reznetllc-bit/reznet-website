@@ -1,42 +1,98 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><title>Book — RezNet LLC</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" href="/assets/img/logo-small.png"><link rel="stylesheet" href="/assets/css/site.css">
-</head><body><div class="bg"></div>
-<header class="header"><div class="container header-inner">
-<a class="brand" href="/"><img src="/assets/img/header-logo.png" alt="RezNet"><div><div class="name">RezNet LLC</div><div class="sub">Residential Network Authority</div></div></a>
-<button class="nav-toggle" data-nav-toggle>☰ Menu</button>
-<nav class="nav" data-nav>
-<a href="/realtors">Realtors</a><a href="/assessment">Assessment</a><a href="/unifi">UniFi</a><a href="/about">About</a><a class="cta" href="/contact">Book</a>
-</nav></div></header>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Book — RezNet LLC</title>
+  <meta name="description" content="Book an assessment. Consult-first, evidence-based. Implementation optional by request."/>
+  <link rel="stylesheet" href="/assets/css/site.css"/>
+</head>
+
+<body>
+<div class="bg" aria-hidden="true"></div>
+
+<header class="header">
+  <div class="container header-inner">
+    <a class="brand" href="/">
+      <img src="/assets/img/logo-small.png" alt="RezNet"/>
+      <div>
+        <div class="name">RezNet LLC</div>
+        <div class="sub">Residential Network Authority</div>
+      </div>
+    </a>
+
+    <button class="nav-toggle" type="button" data-nav-toggle>Menu</button>
+
+    <nav class="nav" data-nav>
+      <a href="/realtors">Realtors</a>
+      <a href="/assessment">Assessment</a>
+      <a href="/unifi">Implementation</a>
+      <a href="/about">About</a>
+      <a class="cta" href="/contact">Book</a>
+    </nav>
+  </div>
+</header>
+
 <main class="container">
-<section class="hero" style="padding-bottom:1.8rem;"><div class="kicker" data-reveal><span class="dot"></span> Booking</div>
-<h1 data-reveal>Start with an Assessment.</h1>
-<p class="lead" data-reveal>Tell us what kind of home this is and what’s going wrong. We’ll respond with next steps and scheduling.</p>
-</section>
-<section class="section"><div class="split">
-<div class="panel" data-reveal>
-<div class="badge">Fast contact</div>
-<p class="p" style="margin-top:.8rem;">Call/text: <strong>(336) 347-8466</strong><br>Service area: Davie County + Triad (by request)</p>
-<p class="muted">Installs are optional and only by request after assessment.</p>
-</div>
-<div class="card" data-reveal>
-<div class="title">Request a booking</div>
-<form class="form" name="reznet-booking" method="POST" data-netlify="true" action="/thanks">
-<input type="hidden" name="form-name" value="reznet-booking">
-<input class="input" name="name" placeholder="Name" required>
-<input class="input" name="email" type="email" placeholder="Email" required>
-<input class="input" name="phone" placeholder="Phone" required>
-<select name="type" class="input" required>
-<option value="">I am a…</option><option>Realtor</option><option>Buyer</option><option>Seller</option><option>Homeowner</option>
-</select>
-<input class="input" name="address" placeholder="Property address (or city/neighborhood)">
-<textarea name="notes" placeholder="What’s going wrong? Which rooms? WFH/gaming/streaming? Any existing gear?"></textarea>
-<button class="btn primary" type="submit">Send request</button>
-</form>
-<form name="reznet-booking" data-netlify="true" hidden>
-<input type="text" name="name"><input type="email" name="email">
-</form>
-</div></div></section></main>
-<footer class="footer"><div class="container footer-inner"><div>RezNet LLC © <span data-year></span></div><div>Book • Assess • Plan • Optional install</div></div></footer>
-<script src="/assets/js/site.js"></script></body></html>
+
+  <section class="hero">
+    <div class="kicker" data-reveal><span class="dot"></span> Book</div>
+    <h1 data-reveal>Book an assessment.</h1>
+    <p class="lead" data-reveal>
+      Tell us what you’re seeing. We’ll determine what’s real, what’s not, and what to do next — with evidence.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2 class="h2" data-reveal>Fast intake</h2>
+    <p class="p" data-reveal>
+      (This is the placeholder booking page. We’ll wire it to your real booking + payments next.)
+    </p>
+
+    <div class="grid-3">
+      <div class="card" data-reveal>
+        <div class="title">What’s happening?</div>
+        <ul class="bullets">
+          <li>Dead zones / slow rooms</li>
+          <li>Video calls drop</li>
+          <li>Cameras buffer</li>
+          <li>“Mesh is weird”</li>
+        </ul>
+      </div>
+
+      <div class="card" data-reveal>
+        <div class="title">What you get</div>
+        <ul class="bullets">
+          <li>Inspection-grade report</li>
+          <li>Verdict + findings</li>
+          <li>Phased roadmap</li>
+          <li>Optional implementation spec</li>
+        </ul>
+      </div>
+
+      <div class="card" data-reveal>
+        <div class="title">Next step</div>
+        <p class="p">
+          Email / phone / calendar embed goes here. For now, use the contact method you prefer.
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-actions" data-reveal style="margin-top:14px;">
+      <a class="btn primary" href="/assessment">See the deliverable</a>
+      <a class="btn" href="/realtors">Realtor Packages</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>RezNet LLC © <span data-year></span></div>
+    <div>Book • Assess • Plan • Optional implementation</div>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js"></script>
+</body>
+</html>
