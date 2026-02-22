@@ -1,13 +1,18 @@
 [build]
   publish = "."
 
-# --- Never rewrite assets (prevents "unstyled words" for other users) ---
+# 1) Never rewrite real files (critical)
 [[redirects]]
   from = "/assets/*"
   to = "/assets/:splat"
   status = 200
 
-# --- Hidden preview routes (full site) ---
+[[redirects]]
+  from = "/pages/*"
+  to = "/pages/:splat"
+  status = 200
+
+# 2) Hidden preview routes (you can show clients)
 [[redirects]]
   from = "/preview"
   to = "/index.html"
@@ -53,9 +58,20 @@
   to = "/pages/thanks.html"
   status = 200
 
-# --- Public site locked to Coming Soon ---
+# 3) Public site locked to coming soon
 [[redirects]]
   from = "/*"
   to = "/coming-soon.html"
   status = 200
   force = true
+
+# 4) Add correct MIME types (belt + suspenders)
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Content-Type = "text/css; charset=utf-8"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Content-Type = "text/javascript; charset=utf-8"
