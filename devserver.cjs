@@ -7,9 +7,11 @@ const PORT = process.env.PORT ? Number(process.env.PORT) : 5175;
 const ROOT = process.cwd();
 
 const routes = new Map([
+  ["/", "/index.html"],
   ["/assessment", "/pages/assessment.html"],
   ["/realtors", "/pages/realtors.html"],
   ["/unifi", "/pages/unifi.html"],
+  ["/home-types", "/pages/home-types.html"],
   ["/about", "/pages/about.html"],
   ["/contact", "/pages/contact.html"],
   ["/thanks", "/pages/thanks.html"],
@@ -42,19 +44,21 @@ http.createServer((req, res) => {
     const pathname = u.pathname || "/";
 
     // Netlify-style rewrites for "pretty" routes
-    const mapped = routes.get(pathname);
-    const requested = mapped || pathname;
+    const requested = routes.get(pathname) || pathname;
 
-    let filePath = requested === "/" ? "/index.html" : requested;
+    // Serve exact file or fall back to /index.html for root
+    let filePath = requested;
 
-    // If someone hits /pages/foo (no extension), try /pages/foo.html
-    if (!path.extname(filePath)) {
+    // If someone requests a directory-like path, try .html
+    if (!path.extname(filePath) && filePath !== "/") {
       const htmlCandidate = filePath + ".html";
       const absCand = safeJoin(ROOT, htmlCandidate);
       if (absCand && fs.existsSync(absCand) && fs.statSync(absCand).isFile()) {
         filePath = htmlCandidate;
       }
     }
+
+    if (filePath === "/") filePath = "/index.html";
 
     const abs = safeJoin(ROOT, filePath);
     if (!abs || !fs.existsSync(abs) || fs.statSync(abs).isDirectory()) {
