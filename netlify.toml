@@ -1,57 +1,17 @@
+# /home/drago/dev/reznet-website/netlify.toml
+
 [build]
   publish = "public"
 
-# -------------------------------
-# PREVIEW ROUTES (must come first)
-# -------------------------------
+# --- PREVIEW SITE ---
+# Everything under /preview should serve from /public/preview/ as static files.
 [[redirects]]
-  from = "/preview"
-  to = "/preview/index.html"
+  from = "/preview/*"
+  to = "/preview/:splat"
   status = 200
 
-[[redirects]]
-  from = "/preview/"
-  to = "/preview/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/preview/about"
-  to = "/preview/pages/about.html"
-  status = 200
-
-[[redirects]]
-  from = "/preview/assessment"
-  to = "/preview/pages/assessment.html"
-  status = 200
-
-[[redirects]]
-  from = "/preview/realtors"
-  to = "/preview/pages/realtors.html"
-  status = 200
-
-[[redirects]]
-  from = "/preview/home-types"
-  to = "/preview/pages/home-types.html"
-  status = 200
-
-[[redirects]]
-  from = "/preview/implementation"
-  to = "/preview/pages/implementation.html"
-  status = 200
-
-[[redirects]]
-  from = "/preview/contact"
-  to = "/preview/pages/contact.html"
-  status = 200
-
-[[redirects]]
-  from = "/preview/thanks"
-  to = "/preview/pages/thanks.html"
-  status = 200
-
-# -------------------------------
-# ROOT = COMING SOON (hide all)
-# -------------------------------
+# --- COMING SOON GATE ---
+# Catch-all to coming-soon, but DO NOT force it (so real files like /assets/* still work).
 [[redirects]]
   from = "/*"
   to = "/coming-soon.html"
