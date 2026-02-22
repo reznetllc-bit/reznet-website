@@ -1,17 +1,62 @@
 [build]
   publish = "."
 
+# -----------------------------
+# INTERNAL PREVIEW (works)
+# -----------------------------
+
 [[redirects]]
-  from = "/preview/*"
-  to = "/preview/:splat"
+  from = "/preview"
+  to = "/preview/index.html"
   status = 200
 
 [[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
+  from = "/preview/"
+  to = "/preview/index.html"
   status = 200
+
+[[redirects]]
+  from = "/preview/realtors"
+  to = "/preview/pages/realtors.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/assessment"
+  to = "/preview/pages/assessment.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/implementation"
+  to = "/preview/pages/unifi.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/about"
+  to = "/preview/pages/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/contact"
+  to = "/preview/pages/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/book"
+  to = "/preview/pages/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/thanks"
+  to = "/preview/pages/thanks.html"
+  status = 200
+
+# -----------------------------
+# PUBLIC SITE (LOCKED)
+# -----------------------------
+# Force is the key: override index.html too.
 
 [[redirects]]
   from = "/*"
   to = "/coming-soon.html"
   status = 200
+  force = true
