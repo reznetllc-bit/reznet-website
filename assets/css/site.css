@@ -232,3 +232,58 @@ textarea{ min-height: 130px; resize: vertical; }
 /* Footer */
 .footer{ padding: 1.2rem 0; border-top: 1px solid rgba(255,255,255,0.08); background: rgba(0,0,0,0.68); }
 .footer-inner{ display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; color: rgba(243,244,246,0.70); font-size:0.85rem; }
+
+
+/* --- Assessment report preview enhancements --- */
+.preview-frame{
+  margin-top: .75rem;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.35);
+  box-shadow: 0 10px 40px rgba(0,0,0,.45);
+}
+.preview-frame img{
+  width: 100%;
+  display: block;
+  transform: translateZ(0);
+  transition: transform .18s ease, filter .18s ease, opacity .18s ease;
+}
+.preview-frame img.swap{
+  opacity: .88;
+  transform: scale(1.01);
+  filter: saturate(1.05) contrast(1.05);
+}
+[data-preview].active{
+  outline: 1px solid rgba(255,0,64,.35);
+  box-shadow: 0 0 0 3px rgba(255,0,64,.12);
+}
+.mini-note{
+  font-size: .95rem;
+  line-height: 1.35;
+}
+/* --- SAFETY: never hide content if JS fails --- */
+[data-reveal]{
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+/* --- SAFE reveal: visible by default, animate only when JS opts-in --- */
+[data-reveal]{
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.js [data-reveal]{
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(0px);
+  transition: opacity .5s ease, transform .6s ease, filter .6s ease;
+  will-change: opacity, transform;
+}
+
+.js [data-reveal].reveal{
+  opacity: 1;
+  transform: none;
+}
