@@ -1,37 +1,25 @@
 [build]
   publish = "."
 
+# -------------------------
+# HIDDEN FULL SITE PREVIEW
+# Visit: /preview/
+# -------------------------
+
+# Allow preview site paths through
 [[redirects]]
-  from = "/assessment"
-  to = "/pages/assessment.html"
+  from = "/preview/*"
+  to = "/preview/:splat"
   status = 200
 
+# Allow assets through (css/js/img)
 [[redirects]]
-  from = "/realtors"
-  to = "/pages/realtors.html"
+  from = "/assets/*"
+  to = "/assets/:splat"
   status = 200
 
+# Force EVERYTHING ELSE to Coming Soon (public)
 [[redirects]]
-  from = "/unifi"
-  to = "/pages/unifi.html"
-  status = 200
-
-[[redirects]]
-  from = "/home-types"
-  to = "/pages/home-types.html"
-  status = 200
-
-[[redirects]]
-  from = "/about"
-  to = "/pages/about.html"
-  status = 200
-
-[[redirects]]
-  from = "/contact"
-  to = "/pages/contact.html"
-  status = 200
-
-[[redirects]]
-  from = "/thanks"
-  to = "/pages/thanks.html"
+  from = "/*"
+  to = "/coming-soon.html"
   status = 200
