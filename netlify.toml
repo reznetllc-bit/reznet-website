@@ -1,60 +1,59 @@
 [build]
   publish = "."
 
-# -----------------------------
-# INTERNAL PREVIEW (works)
-# -----------------------------
+# --- Never rewrite assets (prevents "unstyled words" for other users) ---
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
 
+# --- Hidden preview routes (full site) ---
 [[redirects]]
   from = "/preview"
-  to = "/preview/index.html"
+  to = "/index.html"
   status = 200
 
 [[redirects]]
   from = "/preview/"
-  to = "/preview/index.html"
+  to = "/index.html"
   status = 200
 
 [[redirects]]
   from = "/preview/realtors"
-  to = "/preview/pages/realtors.html"
+  to = "/pages/realtors.html"
   status = 200
 
 [[redirects]]
   from = "/preview/assessment"
-  to = "/preview/pages/assessment.html"
+  to = "/pages/assessment.html"
   status = 200
 
 [[redirects]]
   from = "/preview/implementation"
-  to = "/preview/pages/unifi.html"
+  to = "/pages/unifi.html"
   status = 200
 
 [[redirects]]
   from = "/preview/about"
-  to = "/preview/pages/about.html"
+  to = "/pages/about.html"
   status = 200
 
 [[redirects]]
   from = "/preview/contact"
-  to = "/preview/pages/contact.html"
+  to = "/pages/contact.html"
   status = 200
 
 [[redirects]]
   from = "/preview/book"
-  to = "/preview/pages/contact.html"
+  to = "/pages/contact.html"
   status = 200
 
 [[redirects]]
   from = "/preview/thanks"
-  to = "/preview/pages/thanks.html"
+  to = "/pages/thanks.html"
   status = 200
 
-# -----------------------------
-# PUBLIC SITE (LOCKED)
-# -----------------------------
-# Force is the key: override index.html too.
-
+# --- Public site locked to Coming Soon ---
 [[redirects]]
   from = "/*"
   to = "/coming-soon.html"
