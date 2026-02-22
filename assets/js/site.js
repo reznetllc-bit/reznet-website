@@ -1,32 +1,33 @@
 // RezNet site JS: small, fast, no deps
 (() => {
+  // Mark JS presence for safe reveal animations
   document.documentElement.classList.add("js");
 
   // Year stamp
   const y = document.querySelector("[data-year]");
   if (y) y.textContent = String(new Date().getFullYear());
 
-  // Mobile nav
+  // Mobile nav toggle
   const navToggle = document.querySelector("[data-nav-toggle]");
   const nav = document.querySelector("[data-nav]");
   if (navToggle && nav) {
-    navToggle.addEventListener("click", () => {
-      nav.classList.toggle("open");
-    });
+    navToggle.addEventListener("click", () => nav.classList.toggle("open"));
   }
 
-  // Reveal on scroll (uses ".in" because CSS expects that)
+  // Reveal on scroll (CSS expects ".in")
   const els = Array.from(document.querySelectorAll("[data-reveal]"));
   if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("in");
-          io.unobserve(e.target);
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
         }
-      });
-    }, { threshold: 0.12 });
-
+      },
+      { threshold: 0.12 }
+    );
     els.forEach((el) => io.observe(el));
   } else {
     els.forEach((el) => el.classList.add("in"));
@@ -43,6 +44,7 @@
 
     const setActive = (key) => {
       if (!map[key]) return;
+
       img.classList.add("swap");
       img.src = map[key];
 
@@ -54,9 +56,12 @@
     };
 
     document.querySelectorAll("[data-preview-btn]").forEach((btn) => {
-      btn.addEventListener("click", () => setActive(btn.getAttribute("data-preview-btn")));
+      btn.addEventListener("click", () => {
+        setActive(btn.getAttribute("data-preview-btn"));
+      });
     });
 
+    // default
     setActive("wifi");
   }
 })();
