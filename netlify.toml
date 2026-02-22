@@ -1,77 +1,89 @@
 [build]
   publish = "."
 
-# 1) Never rewrite real files (critical)
-[[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/pages/*"
-  to = "/pages/:splat"
-  status = 200
-
-# 2) Hidden preview routes (you can show clients)
+# -----------------------
+# PREVIEW (real site)
+# -----------------------
 [[redirects]]
   from = "/preview"
-  to = "/index.html"
+  to = "/preview/index.html"
   status = 200
 
 [[redirects]]
   from = "/preview/"
-  to = "/index.html"
+  to = "/preview/index.html"
   status = 200
 
 [[redirects]]
   from = "/preview/realtors"
-  to = "/pages/realtors.html"
+  to = "/preview/pages/realtors.html"
   status = 200
 
 [[redirects]]
   from = "/preview/assessment"
-  to = "/pages/assessment.html"
+  to = "/preview/pages/assessment.html"
   status = 200
 
 [[redirects]]
   from = "/preview/implementation"
-  to = "/pages/unifi.html"
+  to = "/preview/pages/unifi.html"
   status = 200
 
 [[redirects]]
   from = "/preview/about"
-  to = "/pages/about.html"
+  to = "/preview/pages/about.html"
   status = 200
 
 [[redirects]]
   from = "/preview/contact"
-  to = "/pages/contact.html"
+  to = "/preview/pages/contact.html"
   status = 200
 
 [[redirects]]
-  from = "/preview/book"
-  to = "/pages/contact.html"
+  from = "/preview/home-types"
+  to = "/preview/pages/home-types.html"
   status = 200
 
 [[redirects]]
   from = "/preview/thanks"
-  to = "/pages/thanks.html"
+  to = "/preview/pages/thanks.html"
   status = 200
 
-# 3) Public site locked to coming soon
+# -----------------------
+# PUBLIC (coming soon gate)
+# anything NOT /preview stays on /
+# -----------------------
 [[redirects]]
-  from = "/*"
-  to = "/coming-soon.html"
-  status = 200
-  force = true
+  from = "/realtors"
+  to = "/"
+  status = 302
 
-# 4) Add correct MIME types (belt + suspenders)
-[[headers]]
-  for = "/assets/css/*"
-  [headers.values]
-    Content-Type = "text/css; charset=utf-8"
+[[redirects]]
+  from = "/assessment"
+  to = "/"
+  status = 302
 
-[[headers]]
-  for = "/assets/js/*"
-  [headers.values]
-    Content-Type = "text/javascript; charset=utf-8"
+[[redirects]]
+  from = "/implementation"
+  to = "/"
+  status = 302
+
+[[redirects]]
+  from = "/about"
+  to = "/"
+  status = 302
+
+[[redirects]]
+  from = "/contact"
+  to = "/"
+  status = 302
+
+[[redirects]]
+  from = "/home-types"
+  to = "/"
+  status = 302
+
+[[redirects]]
+  from = "/thanks"
+  to = "/"
+  status = 302
