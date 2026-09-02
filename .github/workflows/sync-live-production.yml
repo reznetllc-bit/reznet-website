@@ -1,0 +1,96 @@
+name: Sync live RezNet production
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-live-production.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Replace legacy source with live Headless production
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Remove the pre-Headless/Netlify source while preserving GitHub metadata.
+          rm -rf site public
+          rm -f cameras.html coming-soon.html contact.html devserver.cjs home.html netlify.toml styles.css styles.site.css triad.html unifi.html why.html wifi.html
+
+          mkdir -p site/assets/css site/assets/js site/assets/img
+
+          base='https://www.reznetllc.com'
+
+          curl --fail --silent --show-error --location "$base/" -o site/index.html
+          curl --fail --silent --show-error --location "$base/404.html" -o site/404.html
+          curl --fail --silent --show-error --location "$base/privacy.html" -o site/privacy.html
+          curl --fail --silent --show-error --location "$base/thank-you.html" -o site/thank-you.html
+          curl --fail --silent --show-error --location "$base/robots.txt" -o site/robots.txt
+          curl --fail --silent --show-error --location "$base/site.webmanifest" -o site/site.webmanifest
+          curl --fail --silent --show-error --location "$base/sitemap.xml" -o site/sitemap.xml
+          curl --fail --silent --show-error --location "$base/assets/css/reznet.css" -o site/assets/css/reznet.css
+          curl --fail --silent --show-error --location "$base/assets/js/reznet.js" -o site/assets/js/reznet.js
+          curl --fail --silent --show-error --location "$base/assets/js/wix-config.js" -o site/assets/js/wix-config.js
+          curl --fail --silent --show-error --location "$base/assets/img/favicon.png" -o site/assets/img/favicon.png
+          curl --fail --silent --show-error --location "$base/assets/img/reznet-official-full.png" -o site/assets/img/reznet-official-full.png
+          curl --fail --silent --show-error --location "$base/assets/img/reznet-official-header.png" -o site/assets/img/reznet-official-header.png
+          curl --fail --silent --show-error --location "$base/assets/img/reznet-social.png" -o site/assets/img/reznet-social.png
+
+          cat > wix.config.json <<'JSON'
+          {
+            "projectType": "Site",
+            "appId": "f4d3315e-bf52-401b-9632-2f528268ee3b",
+            "siteId": "c662787c-d2df-4eae-8c80-0b2301f670bd",
+            "site": {
+              "outputDirectory": "./site"
+            }
+          }
+          JSON
+
+          cat > README.md <<'MD'
+          # RezNet Website
+
+          Canonical source for the production RezNet Headless website at `https://www.reznetllc.com/`.
+
+          - Production Wix site: `c662787c-d2df-4eae-8c80-0b2301f670bd`
+          - Production frontend: `site/`
+          - Deployment configuration: `wix.config.json`
+          - Public contact: `hello@reznetllc.com`
+          - Public phone: `336-347-8466`
+
+          The old Netlify/editor-era source was retained in Git history and is no longer the active source tree.
+          MD
+
+          find site -type f -print0 | sort -z | xargs -0 sha256sum > PRODUCTION_SHA256SUMS.txt
+
+          # Guardrails: fail the sync if the live site unexpectedly regresses to old identity values.
+          grep -q 'hello@reznetllc.com' site/index.html
+          grep -q '336-347-8466' site/index.html
+          grep -q 'f4d3315e-bf52-401b-9632-2f528268ee3b' site/assets/js/wix-config.js
+          grep -q 'abfab16b-5544-490a-b726-487924a7c964' site/assets/js/wix-config.js
+          ! grep -R -q '336-761-7908\|reznetllc@gmail.com\|h6s-3cb76c87499943' site
+
+      - name: Commit canonical production source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'RezNet Production Sync'
+          git config user.email 'bradon@reznetllc.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No production changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Make Headless v2 production the canonical website source'
+          git push origin HEAD:main
