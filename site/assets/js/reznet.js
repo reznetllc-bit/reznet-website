@@ -192,7 +192,7 @@
     const response = await fetch("https://www.wixapis.com/form-submission-service/v4/submissions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${token}`,
+        "Authorization": token,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -266,7 +266,7 @@
       } catch (error) {
         console.error(error);
         const fallback = emailFallback(data);
-        setFormStatus(`The secure form could not finish sending. Nothing was charged. <a href="${fallback}">Send the request by email instead</a>, or call <a href="tel:+13363478466">336-347-8466</a>.`);
+        setFormStatus(`The secure form could not finish sending. <a href="${fallback}">Send the request by email instead</a>, or call <a href="tel:+13363478466">336-347-8466</a>.`);
       } finally {
         if (submitButton) submitButton.disabled = false;
       }
