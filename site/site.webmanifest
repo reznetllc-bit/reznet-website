@@ -1,0 +1,12 @@
+{
+  "name": "RezNet LLC",
+  "short_name": "RezNet",
+  "description": "Raising the Standards of Home Networks.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {"src": "/assets/img/favicon.png", "sizes": "512x512", "type": "image/png"}
+  ]
+}
