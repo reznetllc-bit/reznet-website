@@ -24,7 +24,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Remove the pre-Headless/Netlify source while preserving GitHub metadata.
+          # Remove the pre-Headless/Netlify source while preserving Git history.
           rm -rf site public
           rm -f cameras.html coming-soon.html contact.html devserver.cjs home.html netlify.toml styles.css styles.site.css triad.html unifi.html why.html wifi.html
 
@@ -33,7 +33,8 @@ jobs:
           base='https://www.reznetllc.com'
 
           curl --fail --silent --show-error --location "$base/" -o site/index.html
-          curl --fail --silent --show-error --location "$base/404.html" -o site/404.html
+          # A real 404 page intentionally returns HTTP 404, so do not use --fail here.
+          curl --silent --show-error --location "$base/404.html" -o site/404.html
           curl --fail --silent --show-error --location "$base/privacy.html" -o site/privacy.html
           curl --fail --silent --show-error --location "$base/thank-you.html" -o site/thank-you.html
           curl --fail --silent --show-error --location "$base/robots.txt" -o site/robots.txt
@@ -69,7 +70,7 @@ jobs:
           - Public contact: `hello@reznetllc.com`
           - Public phone: `336-347-8466`
 
-          The old Netlify/editor-era source was retained in Git history and is no longer the active source tree.
+          The old Netlify/editor-era source is retained in Git history and is no longer the active source tree.
           MD
 
           find site -type f -print0 | sort -z | xargs -0 sha256sum > PRODUCTION_SHA256SUMS.txt
