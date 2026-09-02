@@ -19,34 +19,53 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Replace legacy source with live Headless production
+      - name: Replace legacy source with exact live Headless v2
         shell: bash
         run: |
           set -euo pipefail
 
-          # Remove the pre-Headless/Netlify source while preserving Git history.
           rm -rf site public
           rm -f cameras.html coming-soon.html contact.html devserver.cjs home.html netlify.toml styles.css styles.site.css triad.html unifi.html why.html wifi.html
-
           mkdir -p site/assets/css site/assets/js site/assets/img
 
           base='https://www.reznetllc.com'
+          get() { curl --silent --show-error --location "$base/$1" -o "site/$2"; }
 
-          curl --fail --silent --show-error --location "$base/" -o site/index.html
-          # A real 404 page intentionally returns HTTP 404, so do not use --fail here.
-          curl --silent --show-error --location "$base/404.html" -o site/404.html
-          curl --fail --silent --show-error --location "$base/privacy.html" -o site/privacy.html
-          curl --fail --silent --show-error --location "$base/thank-you.html" -o site/thank-you.html
-          curl --fail --silent --show-error --location "$base/robots.txt" -o site/robots.txt
-          curl --fail --silent --show-error --location "$base/site.webmanifest" -o site/site.webmanifest
-          curl --fail --silent --show-error --location "$base/sitemap.xml" -o site/sitemap.xml
-          curl --fail --silent --show-error --location "$base/assets/css/reznet.css" -o site/assets/css/reznet.css
-          curl --fail --silent --show-error --location "$base/assets/js/reznet.js" -o site/assets/js/reznet.js
-          curl --fail --silent --show-error --location "$base/assets/js/wix-config.js" -o site/assets/js/wix-config.js
-          curl --fail --silent --show-error --location "$base/assets/img/favicon.png" -o site/assets/img/favicon.png
-          curl --fail --silent --show-error --location "$base/assets/img/reznet-official-full.png" -o site/assets/img/reznet-official-full.png
-          curl --fail --silent --show-error --location "$base/assets/img/reznet-official-header.png" -o site/assets/img/reznet-official-header.png
-          curl --fail --silent --show-error --location "$base/assets/img/reznet-social.png" -o site/assets/img/reznet-social.png
+          get '' index.html
+          get '404.html' 404.html
+          get 'privacy.html' privacy.html
+          get 'thank-you.html' thank-you.html
+          get 'robots.txt' robots.txt
+          get 'site.webmanifest' site.webmanifest
+          get 'sitemap.xml' sitemap.xml
+          get 'assets/css/reznet.css' assets/css/reznet.css
+          get 'assets/js/reznet.js' assets/js/reznet.js
+          get 'assets/js/wix-config.js' assets/js/wix-config.js
+          get 'assets/img/favicon.png' assets/img/favicon.png
+          get 'assets/img/reznet-official-full.png' assets/img/reznet-official-full.png
+          get 'assets/img/reznet-official-header.png' assets/img/reznet-official-header.png
+          get 'assets/img/reznet-social.png' assets/img/reznet-social.png
+
+          cat > EXPECTED_PRODUCTION_SHA256.txt <<'SHA'
+          4fe5ba5da0187c2415035e2494d077dc42b6a5f5c10dc3af2ff1df4c32dd6723  site/404.html
+          3b15eeb2d41b1ed6fb3d5cc082b5ea1b86bbf9004aa1ba868084873c4f2617cb  site/assets/css/reznet.css
+          21f474825d64576afd1b968eedb603a2b5d067b497a85a4943cef772a5949573  site/assets/img/favicon.png
+          9092fd14d4827773558edcf08e45740ecbf6739f1005064f97273c2c75b3e8ed  site/assets/img/reznet-official-full.png
+          ad499383ebabe651824bc65d13ac137e91fbc51d965bbba2dbbf8945cc6ecedc  site/assets/img/reznet-official-header.png
+          dcb2df82007447215e88e2e463e8ac8951839f938c54272657bfda249e6f7fe5  site/assets/img/reznet-social.png
+          bc8d758ac118af47e188de3d8ee1a9758373c7435b533324dc2d68ca1382daf2  site/assets/js/reznet.js
+          c2aec75190091379d65f5ff2d0c2c6d095f204beb1887256717d5898f2948e7b  site/assets/js/wix-config.js
+          ed217efdd5d6469675cbbbe5dc5302fc26af03a61a2fd9095cacb7ee6ac7741b  site/index.html
+          ba2ac456ff5a480f50481dd7d6e9a1aadf3fd0f394f5c11434501bb7e358436c  site/privacy.html
+          aefaa7ccdcd8c9d323a1c9ba9a45e51d2106f2ed73412f7008ed4f732c26d80e  site/robots.txt
+          c2e883776bd58deaa546d8f96ff3b772431ad9018e87d32fe20e7d20b6e20401  site/site.webmanifest
+          c3df255aa254b1d889a886642dadd4e57400d4308591e9ae10d5e8e6d0859663  site/sitemap.xml
+          4e44429092b1b5d1c8ddf0b250b370a92b0b084cd72bb5297636d11593812281  site/thank-you.html
+          SHA
+
+          # This makes the sync fail rather than silently committing a Wix error page or altered asset.
+          sha256sum -c EXPECTED_PRODUCTION_SHA256.txt
+          mv EXPECTED_PRODUCTION_SHA256.txt PRODUCTION_SHA256SUMS.txt
 
           cat > wix.config.json <<'JSON'
           {
@@ -67,15 +86,12 @@ jobs:
           - Production Wix site: `c662787c-d2df-4eae-8c80-0b2301f670bd`
           - Production frontend: `site/`
           - Deployment configuration: `wix.config.json`
-          - Public contact: `hello@reznetllc.com`
-          - Public phone: `336-347-8466`
+          - Default public sender/contact: `hello@reznetllc.com`
+          - Public voice/text: `336-347-8466`
 
-          The old Netlify/editor-era source is retained in Git history and is no longer the active source tree.
+          `assessments@reznetllc.com` is reserved for the assessment workflow. The old Netlify/editor-era source is retained in Git history and is no longer the active source tree.
           MD
 
-          find site -type f -print0 | sort -z | xargs -0 sha256sum > PRODUCTION_SHA256SUMS.txt
-
-          # Guardrails: fail the sync if the live site unexpectedly regresses to old identity values.
           grep -q 'hello@reznetllc.com' site/index.html
           grep -q '336-347-8466' site/index.html
           grep -q 'f4d3315e-bf52-401b-9632-2f528268ee3b' site/assets/js/wix-config.js
