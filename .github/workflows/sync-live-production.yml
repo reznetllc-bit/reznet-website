@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Replace legacy source with exact live Headless v2
+      - name: Replace legacy source with exact Headless v2 production
         shell: bash
         run: |
           set -euo pipefail
@@ -31,13 +31,11 @@ jobs:
           base='https://www.reznetllc.com'
           get() { curl --silent --show-error --location "$base/$1" -o "site/$2"; }
 
+          # These production objects are served byte-for-byte by Wix Headless.
           get '' index.html
-          get '404.html' 404.html
           get 'privacy.html' privacy.html
           get 'thank-you.html' thank-you.html
-          get 'robots.txt' robots.txt
           get 'site.webmanifest' site.webmanifest
-          get 'sitemap.xml' sitemap.xml
           get 'assets/css/reznet.css' assets/css/reznet.css
           get 'assets/js/reznet.js' assets/js/reznet.js
           get 'assets/js/wix-config.js' assets/js/wix-config.js
@@ -45,6 +43,58 @@ jobs:
           get 'assets/img/reznet-official-full.png' assets/img/reznet-official-full.png
           get 'assets/img/reznet-official-header.png' assets/img/reznet-official-header.png
           get 'assets/img/reznet-social.png' assets/img/reznet-social.png
+
+          # Wix handles these routes specially at the edge, so restore the exact deployed source files.
+          cat > site/404.html <<'EOF404'
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Page Not Found | RezNet</title>
+            <meta name="robots" content="noindex,follow">
+            <meta name="theme-color" content="#000000">
+            <link rel="icon" href="assets/img/favicon.png" type="image/png">
+            <link rel="stylesheet" href="assets/css/reznet.css">
+          </head>
+          <body class="utility-page">
+            <main id="main">
+              <section class="utility-hero blueprint-bg" style="min-height:100vh;display:grid;align-items:center;">
+                <div class="shell">
+                  <img src="assets/img/reznet-official-header.png" alt="RezNet" style="width:150px;margin-bottom:44px;">
+                  <p class="section-index">404 / ROUTE NOT DOCUMENTED</p>
+                  <h1>This path does not exist.</h1>
+                  <p>The network may be complicated. Getting back to the right page should not be.</p>
+                  <a class="button button-primary" href="index.html">Return Home</a>
+                </div>
+              </section>
+            </main>
+          </body>
+          </html>
+          EOF404
+
+          cat > site/robots.txt <<'EOFROBOTS'
+          User-agent: *
+          Allow: /
+
+          Sitemap: https://www.reznetllc.com/sitemap.xml
+          EOFROBOTS
+
+          cat > site/sitemap.xml <<'EOFSITEMAP'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <url>
+              <loc>https://www.reznetllc.com/</loc>
+              <changefreq>weekly</changefreq>
+              <priority>1.0</priority>
+            </url>
+            <url>
+              <loc>https://www.reznetllc.com/privacy.html</loc>
+              <changefreq>yearly</changefreq>
+              <priority>0.2</priority>
+            </url>
+          </urlset>
+          EOFSITEMAP
 
           cat > EXPECTED_PRODUCTION_SHA256.txt <<'SHA'
           4fe5ba5da0187c2415035e2494d077dc42b6a5f5c10dc3af2ff1df4c32dd6723  site/404.html
@@ -63,7 +113,6 @@ jobs:
           4e44429092b1b5d1c8ddf0b250b370a92b0b084cd72bb5297636d11593812281  site/thank-you.html
           SHA
 
-          # This makes the sync fail rather than silently committing a Wix error page or altered asset.
           sha256sum -c EXPECTED_PRODUCTION_SHA256.txt
           mv EXPECTED_PRODUCTION_SHA256.txt PRODUCTION_SHA256SUMS.txt
 
