@@ -40,12 +40,27 @@ for (const [key, value] of Object.entries(expected)) {
   }
 }
 
+const frontendSource = await readFile(
+  path.join(repositoryRoot, "frontend-src", "reznet.js"),
+  "utf8"
+);
+
+if (!frontendSource.includes("@wix/site-crm")) {
+  throw new Error("RezNet frontend source is missing the Wix Triggered Emails SDK import.");
+}
+
+if (!/emailContact\s*\(\s*config\.triggeredEmailId\s*,\s*contactId\s*\)/.test(frontendSource)) {
+  throw new Error("RezNet frontend source is not wired to the configured Triggered Email ID.");
+}
+
 const bundlePath = path.join(repositoryRoot, "site", "assets", "js", "reznet.js");
 const bundle = await readFile(bundlePath);
 const bundleText = bundle.toString("utf8");
 
+// The exact Triggered Email ID lives in wix-config.js and is read at runtime.
+// The minified bundle must contain the delivery path, not a duplicated hard-coded ID.
 for (const requiredText of [
-  expected.triggeredEmailId,
+  "triggeredEmailId",
   "emailContact",
   "form-submission-service/v4/submissions"
 ]) {
