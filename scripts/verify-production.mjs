@@ -8,8 +8,7 @@ const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url))
 const expected = Object.freeze({
   siteId: "c662787c-d2df-4eae-8c80-0b2301f670bd",
   clientId: "f4d3315e-bf52-401b-9632-2f528268ee3b",
-  formId: "abfab16b-5544-490a-b726-487924a7c964",
-  triggeredEmailId: "VU7gXuR"
+  formId: "abfab16b-5544-490a-b726-487924a7c964"
 });
 
 const wixConfig = JSON.parse(
@@ -40,32 +39,38 @@ for (const [key, value] of Object.entries(expected)) {
   }
 }
 
+for (const obsoleteMarker of ["triggeredEmailId", "VU7gXuR"]) {
+  if (browserConfig.includes(obsoleteMarker)) {
+    throw new Error(`Production browser config still contains obsolete customer-receipt marker: ${obsoleteMarker}.`);
+  }
+}
+
 const frontendSource = await readFile(
   path.join(repositoryRoot, "frontend-src", "reznet.js"),
   "utf8"
 );
 
-if (!frontendSource.includes("@wix/site-crm")) {
-  throw new Error("RezNet frontend source is missing the Wix Triggered Emails SDK import.");
+for (const obsoleteMarker of ["@wix/site-crm", "triggeredEmails", "emailContact", "sendAssessmentAcknowledgment"]) {
+  if (frontendSource.includes(obsoleteMarker)) {
+    throw new Error(`RezNet frontend source still contains obsolete Triggered Email code: ${obsoleteMarker}.`);
+  }
 }
 
-if (!/emailContact\s*\(\s*config\.triggeredEmailId\s*,\s*contactId\s*\)/.test(frontendSource)) {
-  throw new Error("RezNet frontend source is not wired to the configured Triggered Email ID.");
+if (!frontendSource.includes("form-submission-service/v4/submissions")) {
+  throw new Error("RezNet frontend source is missing the Wix Forms submission endpoint.");
 }
 
 const bundlePath = path.join(repositoryRoot, "site", "assets", "js", "reznet.js");
 const bundle = await readFile(bundlePath);
 const bundleText = bundle.toString("utf8");
 
-// The exact Triggered Email ID lives in wix-config.js and is read at runtime.
-// The minified bundle must contain the delivery path, not a duplicated hard-coded ID.
-for (const requiredText of [
-  "triggeredEmailId",
-  "emailContact",
-  "form-submission-service/v4/submissions"
-]) {
-  if (!bundleText.includes(requiredText)) {
-    throw new Error(`Production bundle is missing required marker: ${requiredText}.`);
+if (!bundleText.includes("form-submission-service/v4/submissions")) {
+  throw new Error("Production bundle is missing the Wix Forms submission path.");
+}
+
+for (const obsoleteMarker of ["triggeredEmailId", "emailContact", "VU7gXuR"]) {
+  if (bundleText.includes(obsoleteMarker)) {
+    throw new Error(`Production bundle still contains obsolete customer-receipt marker: ${obsoleteMarker}.`);
   }
 }
 
@@ -83,5 +88,5 @@ if (!manifestText.split(/\r?\n/).includes(expectedManifestLine)) {
 console.log("RezNet production verification PASS.");
 console.log(`Site: ${expected.siteId}`);
 console.log(`Form: ${expected.formId}`);
-console.log(`Triggered Email: ${expected.triggeredEmailId}`);
+console.log("Customer receipt: Wix native Form submitted automation");
 console.log(`Bundle SHA-256: ${bundleHash}`);
