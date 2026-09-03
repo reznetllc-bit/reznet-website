@@ -1,13 +1,12 @@
 /*
  * RezNet Wix Headless visitor configuration.
- * The OAuth client, form, and Triggered Email belong to the RezNet production Headless project.
+ * The OAuth client and form belong to the RezNet production Headless project.
  */
 window.REZNET_WIX = Object.freeze({
   enabled: true,
   siteId: "c662787c-d2df-4eae-8c80-0b2301f670bd",
   clientId: "f4d3315e-bf52-401b-9632-2f528268ee3b",
   formId: "abfab16b-5544-490a-b726-487924a7c964",
-  triggeredEmailId: "VU7gXuR",
   submissionTargets: Object.freeze({
     firstName: "first_name_f409",
     lastName: "last_name_b88c",
