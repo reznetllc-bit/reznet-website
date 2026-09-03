@@ -211,7 +211,14 @@
             [targets.lastName]: lastName,
             [targets.email]: data.get("email"),
             [targets.phone]: normalizeUsPhone(data.get("phone")),
-            [targets.message]: createMessage(data)
+            [targets.message]: createMessage(data),
+            [targets.cityZip]: data.get("city_zip") || "",
+            [targets.role]: data.get("role") || "",
+            [targets.propertyStage]: data.get("property_stage") || "",
+            [targets.primaryConcern]: data.get("primary_concern") || "",
+            [targets.squareFootage]: data.get("square_footage") || "",
+            [targets.timeline]: data.get("timeline") || "",
+            [targets.contactPermission]: data.get("contact_permission") ? "Yes" : "No"
           }
         }
       })
