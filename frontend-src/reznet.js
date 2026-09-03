@@ -1,6 +1,3 @@
-import { createClient, OAuthStrategy } from "@wix/sdk";
-import { triggeredEmails } from "@wix/site-crm";
-
 (() => {
   "use strict";
 
@@ -11,9 +8,6 @@ import { triggeredEmails } from "@wix/site-crm";
   const form = document.getElementById("assessment-request");
   const formStatus = document.getElementById("form-status");
   const year = document.getElementById("year");
-
-  let wixVisitorClient = null;
-  let wixVisitorClientKey = "";
 
   if (year) year.textContent = String(new Date().getFullYear());
 
@@ -138,7 +132,7 @@ import { triggeredEmails } from "@wix/site-crm";
     }
   };
 
-  const getLegacyWixVisitorToken = async (clientId) => {
+  const getWixVisitorToken = async (clientId) => {
     const existing = getStoredToken();
     if (existing) return existing.accessToken;
 
@@ -163,43 +157,6 @@ import { triggeredEmails } from "@wix/site-crm";
     }
 
     return data.access_token;
-  };
-
-  const getWixVisitorClient = (config) => {
-    const key = `${config.siteId || ""}:${config.clientId}`;
-
-    if (!wixVisitorClient || wixVisitorClientKey !== key) {
-      const authOptions = { clientId: config.clientId };
-      if (config.siteId) authOptions.siteId = config.siteId;
-
-      wixVisitorClient = createClient({
-        auth: OAuthStrategy(authOptions),
-        modules: { triggeredEmails }
-      });
-      wixVisitorClientKey = key;
-    }
-
-    return wixVisitorClient;
-  };
-
-  const getWixSubmissionContext = async (config) => {
-    if (config.triggeredEmailId) {
-      try {
-        const client = getWixVisitorClient(config);
-        const authResult = await client.auth.getAuthHeaders();
-        const token = authResult?.headers?.Authorization || authResult?.headers?.authorization;
-
-        if (!token) throw new Error("Wix SDK returned no visitor authorization header.");
-        return { token, client };
-      } catch (error) {
-        console.warn("RezNet customer receipt module was unavailable; the assessment request will still be recorded.", error);
-      }
-    }
-
-    return {
-      token: await getLegacyWixVisitorToken(config.clientId),
-      client: null
-    };
   };
 
   const createMessage = (data) => [
@@ -236,7 +193,7 @@ import { triggeredEmails } from "@wix/site-crm";
   };
 
   const submitToWix = async (data, config) => {
-    const { token, client } = await getWixSubmissionContext(config);
+    const token = await getWixVisitorToken(config.clientId);
     const { firstName, lastName } = splitName(data.get("name"));
     const targets = config.submissionTargets;
 
@@ -265,32 +222,7 @@ import { triggeredEmails } from "@wix/site-crm";
       throw new Error(`Wix submission failed (${response.status}): ${error.slice(0, 180)}`);
     }
 
-    return {
-      result: await response.json(),
-      client
-    };
-  };
-
-  const sendAssessmentAcknowledgment = async (submissionResult, client, config) => {
-    const contactId = submissionResult?.submission?.contactId;
-
-    if (!config.triggeredEmailId) {
-      console.warn("RezNet Triggered Email ID is not configured.");
-      return false;
-    }
-
-    if (!contactId) {
-      console.warn("Wix recorded the assessment request but returned no contact ID for the customer receipt.");
-      return false;
-    }
-
-    if (!client) {
-      console.warn("Wix recorded the assessment request, but the customer receipt SDK was unavailable.");
-      return false;
-    }
-
-    await client.triggeredEmails.emailContact(config.triggeredEmailId, contactId);
-    return true;
+    return response.json();
   };
 
   const emailFallback = (data) => {
@@ -320,7 +252,6 @@ import { triggeredEmails } from "@wix/site-crm";
       const config = window.REZNET_WIX || {};
       const wixReady = Boolean(config.enabled && config.clientId && config.formId);
 
-      // On a Netlify deploy before Wix is wired, use Netlify Forms natively.
       if (!wixReady && /(^|\.)netlify\.app$/i.test(window.location.hostname)) return;
 
       event.preventDefault();
@@ -337,16 +268,7 @@ import { triggeredEmails } from "@wix/site-crm";
       }
 
       try {
-        const { result, client } = await submitToWix(data, config);
-
-        try {
-          await sendAssessmentAcknowledgment(result, client, config);
-        } catch (acknowledgmentError) {
-          // The request is already recorded. Receipt delivery must never turn a
-          // successful intake into a false form failure.
-          console.warn("RezNet recorded the request, but the customer receipt could not be sent.", acknowledgmentError);
-        }
-
+        await submitToWix(data, config);
         form.reset();
         setFormStatus("Thank you. RezNet received your request and will follow up with the right starting point. A pre-launch request is not a confirmed appointment.", "success");
       } catch (error) {
