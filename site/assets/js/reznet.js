@@ -184,6 +184,14 @@
     };
   };
 
+  const normalizeUsPhone = (value) => {
+    const raw = String(value || "").trim();
+    const digits = raw.replace(/\D/g, "");
+    if (digits.length === 10) return `+1${digits}`;
+    if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
+    return raw;
+  };
+
   const submitToWix = async (data, config) => {
     const token = await getWixVisitorToken(config.clientId);
     const { firstName, lastName } = splitName(data.get("name"));
@@ -202,7 +210,7 @@
             [targets.firstName]: firstName,
             [targets.lastName]: lastName,
             [targets.email]: data.get("email"),
-            [targets.phone]: data.get("phone"),
+            [targets.phone]: normalizeUsPhone(data.get("phone")),
             [targets.message]: createMessage(data)
           }
         }
