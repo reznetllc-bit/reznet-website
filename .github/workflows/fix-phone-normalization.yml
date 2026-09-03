@@ -1,0 +1,87 @@
+name: Fix RezNet Wix phone normalization
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-phone-normalization.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Normalize US phone numbers and bust JS cache
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          js_path = Path('site/assets/js/reznet.js')
+          js = js_path.read_text()
+
+          marker = '  const submitToWix = async (data, config) => {'
+          normalize = '''  const normalizeUsPhone = (value) => {
+            const raw = String(value || "").trim();
+            const digits = raw.replace(/\\D/g, "");
+            if (digits.length === 10) return `+1${digits}`;
+            if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
+            return raw;
+          };
+
+'''
+
+          if 'const normalizeUsPhone' not in js:
+              if marker not in js:
+                  raise SystemExit('submitToWix marker not found')
+              js = js.replace(marker, normalize + marker, 1)
+
+          old_phone = '[targets.phone]: data.get("phone"),'
+          new_phone = '[targets.phone]: normalizeUsPhone(data.get("phone")),'
+          if old_phone in js:
+              js = js.replace(old_phone, new_phone, 1)
+          elif new_phone not in js:
+              raise SystemExit('phone submission target not found')
+
+          js_path.write_text(js)
+
+          index_path = Path('site/index.html')
+          html = index_path.read_text()
+          old_script = '<script src="assets/js/reznet.js" defer></script>'
+          new_script = '<script src="assets/js/reznet.js?v=20260902-2" defer></script>'
+          if old_script in html:
+              html = html.replace(old_script, new_script, 1)
+          elif new_script not in html:
+              raise SystemExit('reznet.js script tag not found')
+          index_path.write_text(html)
+          PY
+
+          node --check site/assets/js/reznet.js
+          grep -q 'normalizeUsPhone(data.get("phone"))' site/assets/js/reznet.js
+          grep -q 'assets/js/reznet.js?v=20260902-2' site/index.html
+          grep -q '"Authorization": token' site/assets/js/reznet.js
+          ! grep -q 'Nothing was charged' site/assets/js/reznet.js
+
+          find site -type f -print0 | sort -z | xargs -0 sha256sum > PRODUCTION_SHA256SUMS.txt
+
+      - name: Commit fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'RezNet Production Fix'
+          git config user.email 'bradon@reznetllc.com'
+          git add site/assets/js/reznet.js site/index.html PRODUCTION_SHA256SUMS.txt
+          if git diff --cached --quiet; then
+            echo 'Phone normalization already current.'
+            exit 0
+          fi
+          git commit -m 'Normalize US phone numbers for Wix Forms submissions'
+          git push origin HEAD:main
